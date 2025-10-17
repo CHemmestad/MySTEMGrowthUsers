@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Settings – MySTEMGrowth</title>
+  <style>
+    :root {
+      --nav-bg: #101932;
+      --nav-text: #ffffff;
+      --accent: #1D2B53;
+      --border: #d8deec;
+      --bg: #f5f7fb;
+      --muted: #475569;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #111827;
+    }
+
+    .main-nav {
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 28px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--nav-text);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .nav-spacer {
+      flex: 1;
+    }
+
+    .nav-action {
+      color: var(--nav-bg);
+      background: #d9d9d9;
+      text-decoration: none;
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    main {
+      padding: clamp(32px, 5vw, 72px) clamp(16px, 6vw, 80px);
+      display: grid;
+      gap: 24px;
+    }
+
+    header {
+      display: grid;
+      gap: 10px;
+      max-width: 720px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 36px);
+      color: var(--accent);
+    }
+
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 620px;
+    }
+
+    .settings-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .settings-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: clamp(20px, 3vw, 28px);
+      display: grid;
+      gap: 18px;
+      box-shadow: 0 8px 24px rgba(16, 25, 50, 0.08);
+    }
+
+    .settings-card h2 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--accent);
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 15px;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    button,
+    .danger-btn,
+    .primary-btn {
+      padding: 10px 18px;
+      border-radius: 6px;
+      border: none;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .primary-btn {
+      background: var(--accent);
+      color: #ffffff;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    button {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .secondary-btn {
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      background: transparent;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .danger-btn {
+      border: 1px solid #dc2626;
+      color: #dc2626;
+      background: transparent;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .note {
+      font-size: 14px;
+      color: #64748b;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-logo">
+      <img src="images/tree_sprout_new.png" alt="MySTEMGrowth sprout logo" height="60">
+    </div>
+    <div class="nav-links">
+      <a href="role-select.html">Roles</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <a href="#" class="nav-action">Sign Out</a>
+  </nav>
+
+  <main>
+    <header>
+      <h1>Student Account Settings</h1>
+      <p>Manage your MySTEMGrowth account information, update your password, and control how long your profile remains active.</p>
+    </header>
+
+    <div class="settings-grid">
+      <div class="settings-card">
+        <h2>Update Password</h2>
+        <div>
+          <label for="current-password">Current password</label>
+          <input id="current-password" type="password" placeholder="Enter current password">
+        </div>
+        <div>
+          <label for="new-password">New password</label>
+          <input id="new-password" type="password" placeholder="Enter new password">
+        </div>
+        <div>
+          <label for="confirm-password">Confirm new password</label>
+          <input id="confirm-password" type="password" placeholder="Re-enter new password">
+        </div>
+        <div class="btn-row">
+          <button type="button">Save new password</button>
+          <button type="button" class="secondary-btn">Cancel</button>
+        </div>
+        <p class="note">Password must be at least 8 characters and include one number. Coordinators can’t view your password.</p>
+      </div>
+
+      <div class="settings-card">
+        <h2>Account Management</h2>
+        <p>Download a copy of your data or delete your account if you are no longer participating in MySTEMGrowth.</p>
+        <div class="btn-row">
+          <a href="#" class="secondary-btn">Download my data</a>
+          <a href="#" class="danger-btn">Delete account</a>
+        </div>
+        <p class="note">Deleting your account removes your access to surveys and resources. Coordinators retain anonymized survey results for reporting.</p>
+      </div>
+
+      <div class="settings-card">
+        <h2>Notifications</h2>
+        <p>Choose how you receive reminders about surveys, mentor sessions, and new resources.</p>
+        <div class="btn-row">
+          <button type="button">Edit notification preferences</button>
+        </div>
+        <p class="note">Preferences update instantly. Opting out of email reminders may affect your ability to receive survey links.</p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

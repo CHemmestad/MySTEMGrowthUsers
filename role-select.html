@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Role – MySTEMGrowth</title>
+  <style>
+    :root {
+      --nav-bg: #101932;
+      --nav-text: #ffffff;
+      --accent: #1D2B53;
+      --border: #d8deec;
+      --bg: #f5f7fb;
+      --muted: #475569;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #111827;
+    }
+
+    .main-nav {
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 28px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--nav-text);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .nav-spacer {
+      flex: 1;
+    }
+
+    .nav-action {
+      color: var(--nav-bg);
+      background: #d9d9d9;
+      text-decoration: none;
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    main {
+      padding: 32px clamp(16px, 4vw, 72px);
+      display: grid;
+      gap: 28px;
+    }
+
+    header {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: clamp(20px, 3vw, 32px);
+      display: grid;
+      gap: 12px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 36px);
+      color: var(--accent);
+    }
+
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .role-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      display: grid;
+      gap: 14px;
+      box-shadow: 0 8px 20px rgba(16, 25, 50, 0.08);
+    }
+
+    .role-card h2 {
+      margin: 0;
+      font-size: 22px;
+      color: var(--accent);
+    }
+
+    .role-card p {
+      margin: 0;
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .role-card a {
+      justify-self: start;
+      padding: 8px 16px;
+      background: var(--accent);
+      color: #ffffff;
+      border-radius: 4px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .role-card a:hover {
+      filter: brightness(1.1);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-logo">
+      <img src="images/tree_sprout_new.png" alt="MySTEMGrowth sprout logo" height="60">
+    </div>
+    <div class="nav-links">
+      <a href="role-select.html">Roles</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <a href="#" class="nav-action">Sign Out</a>
+  </nav>
+
+  <main>
+    <header>
+      <h1>Select Your Role</h1>
+      <p>Jump into MySTEMGrowth as an admin, program coordinator, or student. Each workspace is tailored to common tasks for that role.</p>
+    </header>
+
+    <div class="role-grid">
+      <div class="role-card">
+        <h2>Program Coordinator</h2>
+        <p>Manage cohorts, track milestones, and keep mentors and students synced. Choose a program to get started.</p>
+        <a href="program-select.html">Enter coordinator view</a>
+      </div>
+      <div class="role-card">
+        <h2>Administrator</h2>
+        <p>Oversee districts, approve new programs, and monitor platform-wide performance metrics.</p>
+        <a href="admin-home.html">Enter admin view</a>
+      </div>
+      <div class="role-card">
+        <h2>Student</h2>
+        <p>Access resources, check upcoming events, and complete surveys that power program improvements.</p>
+        <a href="student-home.html">Enter student view</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    Prototype role selection screen for MySTEMGrowth. Replace links with authenticated routes during implementation.
+  </footer>
+</body>
+</html>

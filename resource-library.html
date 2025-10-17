@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resource Library – MySTEMGrowth</title>
+  <style>
+    :root {
+      --nav-bg: #101932;
+      --nav-text: #ffffff;
+      --accent: #1D2B53;
+      --border: #d8deec;
+      --bg: #f5f7fb;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #111827;
+    }
+
+    .main-nav {
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 28px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--nav-text);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .nav-spacer {
+      flex: 1;
+    }
+
+    .nav-action {
+      color: var(--nav-bg);
+      background: #d9d9d9;
+      text-decoration: none;
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    main {
+      padding: 32px clamp(16px, 4vw, 64px);
+      display: grid;
+      gap: 24px;
+    }
+
+    section {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: clamp(18px, 3vw, 26px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(26px, 4vw, 32px);
+      color: var(--accent);
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 20px;
+      color: var(--accent);
+    }
+
+    p {
+      margin: 0 0 16px;
+      color: #475569;
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    article {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+
+    article h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      color: #1f2937;
+    }
+
+    article p {
+      margin: 0;
+      font-size: 14px;
+      color: #4b5563;
+    }
+
+    .resource-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .resource-actions a {
+      padding: 6px 12px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .resource-actions .edit {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .resource-actions .delete {
+      border: 1px solid #dc2626;
+      color: #dc2626;
+      background: transparent;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+      color: #374151;
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-logo">
+      <img src="images/tree_sprout_new.png" alt="MySTEMGrowth sprout logo" height="60">
+    </div>
+    <div class="nav-links">
+      <a href="role-select.html">Roles</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <a href="#" class="nav-action">Sign Out</a>
+  </nav>
+
+  <main>
+    <section>
+      <h1>Resource Library</h1>
+      <p>Upload links, documents, and notes that appear for students within their portal. This view mimics results from the Student Resources API.</p>
+      <div class="resource-grid">
+        <article>
+          <h3>STEM Fair Logistics Kit</h3>
+          <p>Checklist, timeline, and contact information for the May showcase.</p>
+          <div class="resource-actions">
+            <a class="edit" href="resource-new.html">Edit</a>
+            <a class="delete" href="#">Delete</a>
+          </div>
+        </article>
+        <article>
+          <h3>Mentor Training Playbook</h3>
+          <p>Slides and talking points for onboarding mentors on April 21.</p>
+          <div class="resource-actions">
+            <a class="edit" href="resource-new.html">Edit</a>
+            <a class="delete" href="#">Delete</a>
+          </div>
+        </article>
+        <article>
+          <h3>Scholar Support Directory</h3>
+          <p>Links to tutoring, wellness, and advising services available to students.</p>
+          <div class="resource-actions">
+            <a class="edit" href="resource-new.html">Edit</a>
+            <a class="delete" href="#">Delete</a>
+          </div>
+        </article>
+        <article>
+          <h3>STEM Career Spotlights</h3>
+          <p>Curated videos featuring professionals in engineering and research roles.</p>
+          <div class="resource-actions">
+            <a class="edit" href="resource-new.html">Edit</a>
+            <a class="delete" href="#">Delete</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Management Tips</h2>
+      <ul>
+        <li>Tag resources by topic (academics, events, wellness) to help students filter content.</li>
+        <li>Use the same API to pre-load materials when creating a new program.</li>
+        <li>Archive outdated resources rather than deleting them to maintain history.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

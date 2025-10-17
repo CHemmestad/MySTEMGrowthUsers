@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pending Student Updates – MySTEMGrowth</title>
+  <style>
+    :root {
+      --nav-bg: #101932;
+      --nav-text: #ffffff;
+      --accent: #1D2B53;
+      --border: #d8deec;
+      --bg: #f5f7fb;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #111827;
+    }
+
+    .main-nav {
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 28px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--nav-text);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .nav-spacer {
+      flex: 1;
+    }
+
+    .nav-action {
+      color: var(--nav-bg);
+      background: #d9d9d9;
+      text-decoration: none;
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    main {
+      padding: 32px clamp(16px, 4vw, 64px);
+      display: grid;
+      gap: 24px;
+    }
+
+    section {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: clamp(18px, 3vw, 26px);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(26px, 4vw, 32px);
+      color: var(--accent);
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 20px;
+      color: var(--accent);
+    }
+
+    p {
+      margin: 0 0 16px;
+      color: #475569;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+      color: #374151;
+    }
+
+    .request {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-top: 16px;
+    }
+
+    .request strong {
+      display: block;
+      font-size: 17px;
+      color: #1f2937;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    button {
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .approve {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .decline {
+      background: #e2e8f0;
+      color: #1f2937;
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-logo">
+      <img src="images/tree_sprout_new.png" alt="MySTEMGrowth sprout logo" height="60">
+    </div>
+    <div class="nav-links">
+      <a href="role-select.html">Roles</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <a href="#" class="nav-action">Sign Out</a>
+  </nav>
+
+  <main>
+    <section>
+      <h1>Pending Student Updates</h1>
+      <p>Review mentor-submitted changes before they appear in the roster. This mirrors the workflow coordinators follow when mentors flag updates.</p>
+
+      <div class="request">
+        <strong>Update mentor assignment</strong>
+        <p><em>Submitted by:</em> Mentor J. Patel</p>
+        <p>Move Alex Johnson to Mentor L. Davis due to schedule alignment.</p>
+        <div class="actions">
+          <button type="button" class="approve">Approve</button>
+          <button type="button" class="decline">Decline</button>
+        </div>
+      </div>
+
+      <div class="request">
+        <strong>Deactivate student account</strong>
+        <p><em>Submitted by:</em> Coordinator</p>
+        <p>Scholar Samantha Lee is transferring to a different school; remove from roster effective April 30.</p>
+        <div class="actions">
+          <button type="button" class="approve">Approve</button>
+          <button type="button" class="decline">Decline</button>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Guidelines</h2>
+      <ul>
+        <li>Approving an update should trigger the appropriate backend mutation (mentor reassignment or removal).</li>
+        <li>Declining should notify the submitter with optional comments for follow-up.</li>
+        <li>Older requests auto-expire after 14 days to keep the queue manageable.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

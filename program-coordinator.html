@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Program Coordinator Home – MySTEMGrowth</title>
+  <style>
+    :root {
+      --nav-bg: #101932;
+      --nav-text: #ffffff;
+      --accent: #1D2B53;
+      --accent-light: #e4ebfb;
+      --border: #d8deec;
+      --muted: #475569;
+      --bg: #f5f7fb;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #111827;
+    }
+
+    .main-nav {
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 28px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--nav-text);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .nav-spacer {
+      flex: 1;
+    }
+
+    .nav-action {
+      color: var(--nav-bg);
+      background: #d9d9d9;
+      text-decoration: none;
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    main {
+      padding: 32px clamp(16px, 4vw, 72px);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .page-header {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: clamp(20px, 3vw, 28px);
+      display: grid;
+      gap: 16px;
+    }
+
+    .title-block h1 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 34px);
+      color: var(--accent);
+    }
+
+    .title-block p {
+      margin: 4px 0 0;
+      color: var(--muted);
+    }
+
+    .program-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .meta-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: #1f2937;
+    }
+
+    .meta-list li {
+      font-size: 15px;
+    }
+
+    .meta-list strong {
+      color: var(--accent);
+    }
+
+    .switch-program {
+      padding: 9px 18px;
+      border-radius: 4px;
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 16px;
+    }
+
+    .stats-row div {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 12px 16px;
+    }
+
+    .stats-row strong {
+      display: block;
+      font-size: 24px;
+      color: var(--accent);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr);
+      gap: 24px;
+    }
+
+    section,
+    aside {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: clamp(18px, 2.5vw, 26px);
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      color: var(--accent);
+    }
+
+    .primary-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .task-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .task-list article {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+
+    .task-list h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      color: #1f2937;
+    }
+
+    .task-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .task-links a {
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 600;
+      border-bottom: 1px solid transparent;
+    }
+
+    .task-links a:hover {
+      border-color: var(--accent);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    ul {
+      margin: 10px 0 0;
+      padding-left: 20px;
+      color: #374151;
+    }
+
+    aside h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      color: #1f2937;
+    }
+
+    aside ul {
+      margin: 0 0 16px;
+    }
+
+    aside a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 8px;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin: 12px 0 32px;
+    }
+
+    @media (max-width: 920px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .main-nav {
+        flex-wrap: wrap;
+      }
+
+      .nav-spacer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-logo">
+      <img src="images/tree_sprout_new.png" alt="MySTEMGrowth sprout logo" height="60">
+    </div>
+    <div class="nav-links">
+      <a href="role-select.html">Roles</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <a class="nav-action" href="#">Sign Out</a>
+  </nav>
+
+  <main>
+    <header class="page-header">
+      <div class="title-block">
+        <h1>STEM Scholars 2024</h1>
+        <p>Coordinator view for the current STEM Scholars cohort. Use this page to keep the roster aligned, mentors supported, and resources fresh.</p>
+      </div>
+      <div class="program-meta">
+        <ul class="meta-list">
+          <li><strong>Term:</strong> Spring 2024</li>
+          <li><strong>Coordinator:</strong> Maya Jenkins</li>
+          <li><strong>Last updated:</strong> Apr 12</li>
+        </ul>
+        <a class="switch-program" href="program-select.html">Switch Program</a>
+      </div>
+      <div class="stats-row">
+        <div>
+          <strong>128</strong>
+          Students enrolled
+        </div>
+        <div>
+          <strong>24</strong>
+          Mentors engaged
+        </div>
+        <div>
+          <strong>43</strong>
+          Resources published
+        </div>
+        <div>
+          <strong>92%</strong>
+          Session attendance
+        </div>
+        <div>
+          <strong>4</strong>
+          Milestones this month
+        </div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <div class="primary">
+        <section class="primary-grid">
+          <div>
+            <h2>Key Workflows</h2>
+            <div class="task-list">
+              <article>
+                <h3>Student Roster</h3>
+                <p>Approve new student joins, export contact lists, and manage mentor pairings.</p>
+                <div class="task-links">
+                  <a href="student-roster.html">View roster</a>
+                  <a href="student-updates.html">Pending updates</a>
+                </div>
+              </article>
+              <article>
+                <h3>Mentor Support</h3>
+                <p>Coordinate mentor meetings, track session feedback, and share follow-up tasks.</p>
+                <div class="task-links">
+                  <a href="communications-hub.html">Log mentor touchpoints</a>
+                </div>
+              </article>
+              <article>
+                <h3>Resource Library</h3>
+                <p>Share documents, links, and announcements that appear in the student portal.</p>
+                <div class="task-links">
+                  <a href="resource-library.html">Manage library</a>
+                  <a href="resource-new.html">Add resource</a>
+                </div>
+              </article>
+              <article>
+                <h3>Communications</h3>
+                <p>Send digests to mentors, track outreach history, and log follow-up notes.</p>
+                <div class="task-links">
+                  <a href="communications-hub.html">Open communications</a>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div>
+            <h2>Upcoming Milestones</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 18%;">Date</th>
+                  <th style="width: 48%;">Milestone</th>
+                  <th style="width: 22%;">Owner</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Apr 15</td>
+                  <td>Submit monthly progress reports via Programs overview.</td>
+                  <td>Program Leads</td>
+                  <td>In Review</td>
+                </tr>
+                <tr>
+                  <td>Apr 21</td>
+                  <td>Finalize mentor training agenda and materials.</td>
+                  <td>Training Team</td>
+                  <td>On Track</td>
+                </tr>
+                <tr>
+                  <td>May 5</td>
+                  <td>Close STEM Fair registration and share student list.</td>
+                  <td>Events</td>
+                  <td>At Risk</td>
+                </tr>
+                <tr>
+                  <td>May 20</td>
+                  <td>Upload Q2 budget reconciliation documents.</td>
+                  <td>Finance</td>
+                  <td>Not Started</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div>
+            <h2>Recent Activity</h2>
+            <ul>
+              <li>Mentor Training Playbook updated &mdash; 2 days ago.</li>
+              <li>4 students requested roster changes &mdash; review in Pending updates.</li>
+              <li>STEM Fair logistics note posted to Resource Library.</li>
+              <li>Weekly coordinator digest sent to mentors.</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <aside>
+        <h3>Today</h3>
+        <ul>
+          <li>Confirm transportation requests with Roosevelt High.</li>
+          <li>Reply to 3 mentor onboarding questions.</li>
+          <li>Check survey participation for April session.</li>
+        </ul>
+        <a href="coordinator-checklist.html">Open daily checklist</a>
+
+        <h3>Helpful Links</h3>
+        <ul>
+          <li><a href="#">Coordinator Handbook (PDF)</a></li>
+          <li><a href="#">Platform release notes</a></li>
+          <li><a href="#">Support ticket portal</a></li>
+        </ul>
+
+        <h3>Contacts</h3>
+        <ul>
+          <li>Maya Jenkins &mdash; Regional Director</li>
+          <li>Valerie Chen &mdash; Logistics Coordinator</li>
+          <li>David Li &mdash; Finance &amp; Compliance</li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    Prototype layout for MySTEMGrowth Program Coordinator dashboard. Replace placeholder links with live routes during implementation.
+  </footer>
+</body>
+</html>

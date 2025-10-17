@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard – MySTEMGrowth</title>
+  <style>
+    :root {
+      --nav-bg: #101932;
+      --nav-text: #ffffff;
+      --accent: #1D2B53;
+      --border: #d8deec;
+      --bg: #f5f7fb;
+      --muted: #475569;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #111827;
+    }
+
+    .main-nav {
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 28px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--nav-text);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .nav-spacer {
+      flex: 1;
+    }
+
+    .nav-action {
+      color: var(--nav-bg);
+      background: #d9d9d9;
+      text-decoration: none;
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    main {
+      display: grid;
+      gap: 32px;
+      padding: clamp(32px, 5vw, 72px) clamp(16px, 6vw, 80px);
+      background: #ffffff;
+    }
+
+    .welcome {
+      max-width: 880px;
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+      text-align: center;
+      padding: clamp(18px, 4vw, 28px);
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(29, 43, 83, 0.08), rgba(29, 43, 83, 0.02));
+      box-shadow: 0 10px 24px rgba(16, 25, 50, 0.08);
+    }
+
+    .welcome-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(12px, 3vw, 28px);
+      flex-wrap: wrap;
+    }
+
+    .welcome h1 {
+      margin: 0;
+      font-size: clamp(30px, 5vw, 44px);
+      color: var(--accent);
+      line-height: 1.2;
+    }
+
+    .settings-cta {
+      padding: 10px 20px;
+      background: linear-gradient(120deg, #1D2B53, #253b75);
+      color: #ffffff;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      box-shadow: 0 8px 16px rgba(29, 43, 83, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .settings-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 22px rgba(29, 43, 83, 0.24);
+    }
+
+    .welcome p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 18px);
+    }
+
+    .hero-list {
+      display: grid;
+      gap: clamp(32px, 5vw, 48px);
+    }
+
+    .hero-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(20px, 4vw, 48px);
+      padding: clamp(20px, 4vw, 32px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 10px 28px rgba(16, 25, 50, 0.08);
+    }
+
+    .hero-card.reverse {
+      flex-direction: column-reverse;
+    }
+
+    .hero-card-content {
+      display: grid;
+      gap: 18px;
+      text-align: center;
+      max-width: 520px;
+    }
+
+    .hero-card h2 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 36px);
+      color: #0f172a;
+    }
+
+    .hero-card p {
+      margin: 0;
+      color: #334155;
+      font-size: clamp(15px, 2vw, 17px);
+      line-height: 1.6;
+    }
+
+    .hero-card a {
+      justify-self: center;
+      padding: 12px 24px;
+      background: #0f172a;
+      color: #ffffff;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 15px;
+      letter-spacing: 0.3px;
+    }
+
+    .hero-card img {
+      width: clamp(220px, 40vw, 360px);
+      height: auto;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    @media (min-width: 860px) {
+      .hero-card,
+      .hero-card.reverse {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .hero-card.reverse {
+        flex-direction: row-reverse;
+      }
+
+      .hero-card-content {
+        text-align: left;
+      }
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin: 28px 0;
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-logo">
+      <img src="images/tree_sprout_new.png" alt="MySTEMGrowth sprout logo" height="60">
+    </div>
+    <div class="nav-links">
+      <a href="role-select.html">Roles</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <a href="#" class="nav-action">Sign Out</a>
+  </nav>
+
+  <main>
+    <section class="welcome">
+      <div class="welcome-header">
+        <h1>Welcome to your MySTEMGrowth Student Dashboard!</h1>
+        <a class="settings-cta" href="student-settings.html">Account settings</a>
+      </div>
+      <p>Within this dashboard you can access surveys, view results, and find resources to support your STEM journey.</p>
+    </section>
+
+    <div class="hero-list">
+      <article class="hero-card">
+        <div class="hero-card-content">
+          <h2>Take Survey</h2>
+          <p>Share your experiences and help improve STEM education for your peers. Your responses stay anonymous.</p>
+          <a href="#">Take survey</a>
+        </div>
+        <img src="images/tree_sprout.png" alt="Illustration of student completing a survey">
+      </article>
+
+      <article class="hero-card reverse">
+        <div class="hero-card-content">
+          <h2>View Results</h2>
+          <p>See how your responses compare with others in your program and track progress over time.</p>
+          <a href="#">View results</a>
+        </div>
+        <img src="images/tree_sprout_medium.png" alt="Illustration of student reviewing results">
+      </article>
+
+      <article class="hero-card">
+        <div class="hero-card-content">
+          <h2>View Resources</h2>
+          <p>Explore tutoring, wellness support, and other opportunities curated for your STEM journey.</p>
+          <a href="resource-library.html">Open resources</a>
+        </div>
+        <img src="images/tree_sprout_large.png" alt="Illustration of student exploring resources">
+      </article>
+
+      <article class="hero-card reverse">
+        <div class="hero-card-content">
+          <h2>Manage Account</h2>
+          <p>Update your password, download your data, or close your account when you finish the program.</p>
+          <a href="student-settings.html">Open settings</a>
+        </div>
+        <img src="images/tree_sprout_medium.png" alt="Illustration of student adjusting account settings">
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    Student dashboard concept. Wire up real student API data and routes during implementation.
+  </footer>
+</body>
+</html>

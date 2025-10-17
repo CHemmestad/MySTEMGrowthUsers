@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Checklist – MySTEMGrowth Coordinator</title>
+  <style>
+    :root {
+      --nav-bg: #101932;
+      --nav-text: #ffffff;
+      --accent: #1D2B53;
+      --border: #d8deec;
+      --bg: #f5f7fb;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #111827;
+    }
+
+    .main-nav {
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 28px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--nav-text);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .nav-spacer {
+      flex: 1;
+    }
+
+    .nav-action {
+      color: var(--nav-bg);
+      background: #d9d9d9;
+      text-decoration: none;
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    main {
+      padding: 32px clamp(16px, 4vw, 64px);
+      display: grid;
+      gap: 24px;
+    }
+
+    section {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: clamp(18px, 3vw, 26px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(26px, 4vw, 32px);
+      color: var(--accent);
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 20px;
+      color: var(--accent);
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+      color: #374151;
+    }
+
+    .group {
+      margin-top: 18px;
+    }
+
+    .group h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: #1f2937;
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-logo">
+      <img src="images/tree_sprout_new.png" alt="MySTEMGrowth sprout logo" height="60">
+    </div>
+    <div class="nav-links">
+      <a href="role-select.html">Roles</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <a href="#" class="nav-action">Sign Out</a>
+  </nav>
+
+  <main>
+    <section>
+      <h1>Daily Coordinator Checklist</h1>
+      <p>Use this list as a template for tasks to complete each day. Adjust or automate items as needed once the full workflow is integrated.</p>
+
+      <div class="group">
+        <h3>Morning</h3>
+        <ul>
+          <li>Review new mentor or student messages in the Communications hub.</li>
+          <li>Check pending roster updates from mentors.</li>
+          <li>Confirm upcoming deadlines in the milestone tracker.</li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h3>Midday</h3>
+        <ul>
+          <li>Publish any resources or announcements scheduled for today.</li>
+          <li>Touch base with mentors assigned to students flagged for support.</li>
+          <li>Update coordinator notes with key decisions or blockers.</li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h3>End of Day</h3>
+        <ul>
+          <li>Log outreach and follow-up items for tomorrow.</li>
+          <li>Send daily digest to mentors if needed.</li>
+          <li>Verify attendance or survey participation metrics.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

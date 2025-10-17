@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Roster – MySTEMGrowth</title>
+  <style>
+    :root {
+      --nav-bg: #101932;
+      --nav-text: #ffffff;
+      --accent: #1D2B53;
+      --border: #d8deec;
+      --bg: #f5f7fb;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #111827;
+    }
+
+    .main-nav {
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 28px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--nav-text);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .nav-spacer {
+      flex: 1;
+    }
+
+    .nav-action {
+      color: var(--nav-bg);
+      background: #d9d9d9;
+      text-decoration: none;
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    main {
+      padding: 32px clamp(16px, 4vw, 64px);
+      display: grid;
+      gap: 24px;
+    }
+
+    section {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: clamp(18px, 3vw, 26px);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(26px, 4vw, 32px);
+      color: var(--accent);
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 20px;
+      color: var(--accent);
+    }
+
+    p {
+      margin: 0 0 16px;
+      color: #475569;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .filters select,
+    .filters input {
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-logo">
+      <img src="images/tree_sprout_new.png" alt="MySTEMGrowth sprout logo" height="60">
+    </div>
+    <div class="nav-links">
+      <a href="role-select.html">Roles</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <a href="#" class="nav-action">Sign Out</a>
+  </nav>
+
+  <main>
+    <section>
+      <h1>Student Roster</h1>
+      <p>Manage enrollment, mentor assignments, and contact details for the selected program. In the live app, records populate from `getUsersInProgram`.</p>
+
+      <div class="filters">
+        <input type="search" placeholder="Search by name or NetID">
+        <select>
+          <option>All mentors</option>
+          <option>Mentor: J. Patel</option>
+          <option>Mentor: K. Adams</option>
+        </select>
+        <select>
+          <option>Status: Active</option>
+          <option>Status: Pending</option>
+          <option>Status: Graduated</option>
+        </select>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 22%;">Student</th>
+            <th style="width: 22%;">Email</th>
+            <th style="width: 12%;">NetID</th>
+            <th style="width: 16%;">Mentor</th>
+            <th style="width: 14%;">Join Date</th>
+            <th style="width: 14%;">Survey Status</th>
+            <th>Submitted On</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Alex Johnson</td>
+            <td>ajohnson@example.edu</td>
+            <td>ajohn23</td>
+            <td>J. Patel</td>
+            <td>Jan 12, 2024</td>
+            <td>Complete</td>
+            <td>Apr 10, 2024</td>
+          </tr>
+          <tr>
+            <td>Samantha Lee</td>
+            <td>slee@example.edu</td>
+            <td>slee18</td>
+            <td>K. Adams</td>
+            <td>Feb 2, 2024</td>
+            <td>Missing</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Marcus Rivera</td>
+            <td>mrivera@example.edu</td>
+            <td>mriver31</td>
+            <td>J. Patel</td>
+            <td>Nov 28, 2023</td>
+            <td>In Progress</td>
+            <td>Apr 05, 2024</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Roster Actions</h2>
+      <ul>
+        <li>Approve pending student requests submitted through the public registration form.</li>
+        <li>Export roster with mentor assignments for reporting.</li>
+        <li>Follow up on survey submissions directly from the roster by filtering for missing or overdue entries.</li>
+        <li>Remove students who graduate or transfer to another cohort.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Overview – MySTEMGrowth</title>
+  <style>
+    :root {
+      --nav-bg: #101932;
+      --nav-text: #ffffff;
+      --accent: #1D2B53;
+      --border: #d8deec;
+      --bg: #f5f7fb;
+      --muted: #475569;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #111827;
+    }
+
+    .main-nav {
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 28px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--nav-text);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .nav-spacer {
+      flex: 1;
+    }
+
+    .nav-action {
+      color: var(--nav-bg);
+      background: #d9d9d9;
+      text-decoration: none;
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    main {
+      padding: 32px clamp(16px, 4vw, 72px);
+      display: grid;
+      gap: 28px;
+    }
+
+    .page-header {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: clamp(22px, 3.2vw, 34px);
+      display: grid;
+      gap: 14px;
+    }
+
+    .page-header h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 36px);
+      color: var(--accent);
+    }
+
+    .page-header p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .link-generator {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: clamp(20px, 3vw, 28px);
+      display: grid;
+      gap: 14px;
+    }
+
+    .link-generator label {
+      font-weight: 600;
+    }
+
+    .link-generator select,
+    .link-generator button {
+      padding: 10px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 15px;
+    }
+
+    .link-generator button {
+      border: none;
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    section {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: clamp(20px, 3vw, 28px);
+    }
+
+    section h2 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      color: var(--accent);
+    }
+
+    .program-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    .program-table th,
+    .program-table td {
+      text-align: left;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .program-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .program-actions a {
+      padding: 6px 12px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .program-actions .download {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .program-actions .delete {
+      border: 1px solid #dc2626;
+      color: #dc2626;
+      background: transparent;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-logo">
+      <img src="images/tree_sprout_new.png" alt="MySTEMGrowth sprout logo" height="60">
+    </div>
+    <div class="nav-links">
+      <a href="role-select.html">Roles</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <a href="#" class="nav-action">Sign Out</a>
+  </nav>
+
+  <main>
+    <header class="page-header">
+      <h1>Admin Workspace</h1>
+      <p>Generate role-specific access links and manage open programs at a glance.</p>
+    </header>
+
+    <section class="link-generator">
+      <h2>Create Role Link</h2>
+      <label for="role">Select role</label>
+      <select id="role">
+        <option>Program Coordinator</option>
+        <option>Admin</option>
+      </select>
+      <button type="button">Generate secure link</button>
+    </section>
+
+    <section>
+      <h2>Open Programs</h2>
+      <table class="program-table">
+        <thead>
+          <tr>
+            <th style="width: 35%;">Program</th>
+            <th style="width: 20%;">Cohort</th>
+            <th style="width: 25%;">Coordinator</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>STEM Scholars 2024</td>
+            <td>Spring 2024</td>
+            <td>Maya Jenkins</td>
+            <td>
+              <div class="program-actions">
+                <a class="download" href="#">Download anon results</a>
+                <a class="delete" href="#">Delete program</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Pathways Pilot</td>
+            <td>2024-2025</td>
+            <td>Eric Soto</td>
+            <td>
+              <div class="program-actions">
+                <a class="download" href="#">Download anon results</a>
+                <a class="delete" href="#">Delete program</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Future Innovators Camp</td>
+            <td>Summer 2024</td>
+            <td>Layla McCarthy</td>
+            <td>
+              <div class="program-actions">
+                <a class="download" href="#">Download anon results</a>
+                <a class="delete" href="#">Delete program</a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    Admin view prototype focused on link generation and program management. Attach production endpoints when ready.
+  </footer>
+</body>
+</html>

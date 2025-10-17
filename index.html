@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MySTEMGrowth Layout Library</title>
+  <style>
+    :root {
+      --nav-bg: #101932;
+      --nav-text: #ffffff;
+      --accent: #1D2B53;
+      --border: #d8deec;
+      --bg: #f5f7fb;
+      --muted: #475569;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #101828;
+    }
+
+    .main-nav {
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 28px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--nav-text);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .nav-spacer {
+      flex: 1;
+    }
+
+    .nav-action {
+      color: var(--nav-bg);
+      background: #d9d9d9;
+      text-decoration: none;
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    main {
+      padding: clamp(32px, 5vw, 72px) clamp(18px, 6vw, 80px);
+    }
+
+    header {
+      max-width: 780px;
+      display: grid;
+      gap: 16px;
+      margin-bottom: clamp(32px, 6vw, 48px);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(32px, 5vw, 44px);
+      color: var(--accent);
+    }
+
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .link-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .link-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      display: grid;
+      gap: 12px;
+      box-shadow: 0 8px 24px rgba(16, 25, 50, 0.08);
+    }
+
+    .link-card h2 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--accent);
+    }
+
+    .link-card p {
+      margin: 0;
+      color: #334155;
+      font-size: 14px;
+    }
+
+    .link-card a {
+      justify-self: start;
+      padding: 10px 16px;
+      border-radius: 6px;
+      background: var(--accent);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    footer {
+      margin-top: clamp(32px, 6vw, 60px);
+      font-size: 14px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-logo">
+      <img src="images/tree_sprout_new.png" alt="MySTEMGrowth sprout logo" height="60">
+    </div>
+    <div class="nav-links">
+      <a href="role-select.html">Roles</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <a href="#" class="nav-action">Sign Out</a>
+  </nav>
+
+  <main>
+    <header>
+      <h1>MySTEMGrowth Layout Library</h1>
+      <p>Explore static mockups for the MySTEMGrowth platform. Each page is a lightweight HTML concept that can be reviewed without running the full application.</p>
+    </header>
+
+    <div class="link-grid">
+      <div class="link-card">
+        <h2>Role Selection</h2>
+        <p>Entry point for choosing between admin, program coordinator, and student views.</p>
+        <a href="role-select.html">Open role select</a>
+      </div>
+
+      <div class="link-card">
+        <h2>Program Coordinator</h2>
+        <p>Dashboard concept showing milestones, quick actions, and program metrics.</p>
+        <a href="program-coordinator.html">Open coordinator view</a>
+      </div>
+
+      <div class="link-card">
+        <h2>Program Selection</h2>
+        <p>Overview of all programs with shortcuts to manage resources or delete cohorts.</p>
+        <a href="program-select.html">Open program select</a>
+      </div>
+
+      <div class="link-card">
+        <h2>Student Dashboard</h2>
+        <p>Student-facing hero cards for surveys, results, resources, and account settings.</p>
+        <a href="student-home.html">Open student home</a>
+      </div>
+
+      <div class="link-card">
+        <h2>Admin Workspace</h2>
+        <p>Administrative tools for generating role links and exporting anonymized results.</p>
+        <a href="admin-home.html">Open admin view</a>
+      </div>
+
+      <div class="link-card">
+        <h2>Student Settings</h2>
+        <p>Account management mock with password, data export, and notification options.</p>
+        <a href="student-settings.html">Open student settings</a>
+      </div>
+    </div>
+
+    <footer>
+      Looking for another page? Navigate directly via the URL, e.g., <code>/student-roster.html</code> or <code>/communications-hub.html</code>.
+    </footer>
+  </main>
+</body>
+</html>
