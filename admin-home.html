@@ -178,6 +178,149 @@
       background: transparent;
     }
 
+    .program-management {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: clamp(20px, 3vw, 30px);
+      display: grid;
+      gap: 20px;
+    }
+
+    .program-management p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .admin-account-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: clamp(20px, 3vw, 30px);
+      display: grid;
+      gap: 16px;
+    }
+
+    .admin-account-card h2 {
+      margin: 0;
+      color: var(--accent);
+    }
+
+    .management-select label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+
+    .management-select select,
+    .tab-panel select,
+    .tab-panel input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 15px;
+      background: #fff;
+    }
+
+    .management-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .management-tab {
+      flex: 1;
+      min-width: 150px;
+      border: 1px solid var(--border);
+      background: #f1f4fb;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-weight: 600;
+      color: var(--accent);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .management-tab.active {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .tab-panels {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: clamp(18px, 2.5vw, 26px);
+      background: #fbfcff;
+    }
+
+    .tab-panel {
+      display: none;
+      gap: 16px;
+    }
+
+    .tab-panel.active {
+      display: grid;
+    }
+
+    .panel-description {
+      color: var(--muted);
+      margin: 0 0 4px;
+      font-size: 14px;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .danger-button {
+      background: #b91c1c;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .secondary-button {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .danger-note {
+      color: #b91c1c;
+      font-size: 14px;
+      margin: 6px 0 0;
+    }
+
+    .panel-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .inline-inputs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .inline-inputs label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
     footer {
       text-align: center;
       color: var(--muted);
@@ -262,10 +405,131 @@
         </tbody>
       </table>
     </section>
+
+    <section class="program-management">
+      <div>
+        <h2>Program Management</h2>
+        <p>Pick a program, then use the tabs to perform the right removal action without leaving this page.</p>
+      </div>
+
+      <div class="management-select">
+        <label for="programSelect">Choose program</label>
+        <select id="programSelect">
+          <option value="scholars">STEM Scholars 2024 · Spring 2024</option>
+          <option value="pathways">Pathways Pilot · 2024-2025</option>
+          <option value="innovators">Future Innovators Camp · Summer 2024</option>
+        </select>
+      </div>
+
+      <div class="management-tabs">
+        <button class="management-tab active" type="button" data-tab="remove-coordinator">Coordinator Actions</button>
+        <button class="management-tab" type="button" data-tab="remove-student">Student Actions</button>
+      </div>
+
+      <div class="tab-panels">
+        <div class="tab-panel active" data-tab-panel="remove-coordinator">
+          <p class="panel-description">Remove a coordinator from the selected program or assign a different owner.</p>
+          <div class="form-grid">
+            <div>
+              <label for="coordinatorSelect">Coordinator</label>
+              <select id="coordinatorSelect">
+                <option>Maya Jenkins</option>
+                <option>Eric Soto</option>
+                <option>Layla McCarthy</option>
+              </select>
+            </div>
+            <div>
+              <label for="handoffEmail">New owner email (optional)</label>
+              <input id="handoffEmail" type="email" placeholder="coordinator@school.edu">
+            </div>
+          </div>
+          <div class="panel-actions">
+            <button class="secondary-button" type="button">Remove coordinator from program</button>
+            <button class="danger-button" type="button">Delete coordinator account</button>
+          </div>
+          <p class="danger-note">Deleting the account removes their platform access and all personal settings.</p>
+        </div>
+
+        <div class="tab-panel" data-tab-panel="remove-student">
+          <p class="panel-description">Quickly remove one or multiple students from the roster when they withdraw.</p>
+          <div class="form-grid">
+            <div>
+              <label for="studentSelect">Student</label>
+              <select id="studentSelect">
+                <option>Ayana Brooks</option>
+                <option>Carlos Taylor</option>
+                <option>Jordan Patel</option>
+              </select>
+            </div>
+            <div>
+              <label for="removalReason">Reason (optional)</label>
+              <input id="removalReason" type="text" placeholder="Scholarship withdrawn, duplicate entry, etc.">
+            </div>
+          </div>
+          <div class="inline-inputs">
+            <label><input type="checkbox"> Notify coordinator about this removal</label>
+          </div>
+          <div class="panel-actions">
+            <button class="secondary-button" type="button">Remove student from program</button>
+            <button class="danger-button" type="button">Delete student account</button>
+          </div>
+          <p class="danger-note">Account deletion wipes login access and anonymizes future reporting for this student.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="admin-account-card">
+      <div>
+        <h2>Admin Account Controls</h2>
+        <p class="panel-description">Delete your own admin access or remove another admin when offboarding or responding to a security incident.</p>
+      </div>
+      <div class="form-grid">
+        <div>
+          <label for="adminSelect">Admin account</label>
+          <select id="adminSelect">
+            <option value="self">Me (Current admin)</option>
+            <option>J. Alvarez – Super Admin</option>
+            <option>Priya Shah – Regional Admin</option>
+            <option>Caleb Rhodes – Analyst</option>
+          </select>
+        </div>
+        <div>
+          <label for="adminConfirm">Type DELETE to confirm</label>
+          <input id="adminConfirm" type="text" placeholder="DELETE">
+        </div>
+      </div>
+      <div class="inline-inputs">
+        <label><input type="checkbox"> Also revoke associated API keys</label>
+        <label><input type="checkbox"> Generate final audit report</label>
+      </div>
+      <div class="panel-actions">
+        <button class="danger-button" type="button">Delete selected admin account</button>
+      </div>
+      <p class="danger-note">Deleting yourself signs you out immediately and requires another admin to re-invite you.</p>
+    </section>
   </main>
 
   <footer>
     Admin view prototype focused on link generation and program management. Attach production endpoints when ready.
   </footer>
+
+  <script>
+    const tabs = document.querySelectorAll('.management-tab');
+    const tabPanels = document.querySelectorAll('[data-tab-panel]');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
+
+        tabs.forEach((btn) => btn.classList.remove('active'));
+        tab.classList.add('active');
+
+        tabPanels.forEach((panel) => {
+          panel.classList.toggle('active', panel.dataset.tabPanel === target);
+        });
+      });
+    });
+  </script>
 </body>
 </html>

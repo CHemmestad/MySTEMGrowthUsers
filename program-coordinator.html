@@ -214,6 +214,58 @@
       border-color: var(--accent);
     }
 
+    .student-roster-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #ffffff;
+      padding: clamp(18px, 3vw, 28px);
+      display: grid;
+      gap: 16px;
+    }
+
+    .student-roster-card table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    .student-roster-card th,
+    .student-roster-card td {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .student-roster-card tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .last-activity {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .roster-card-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .roster-link {
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 6px;
+      padding: 8px 14px;
+    }
+
+    .roster-link:hover {
+      background: var(--accent-light);
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -361,6 +413,48 @@
                   <a href="communications-hub.html">Open communications</a>
                 </div>
               </article>
+            </div>
+          </div>
+
+          <div class="student-roster-card">
+            <div>
+              <h2>Current Students</h2>
+              <p class="last-activity">Snapshot of the students assigned to this program and their latest platform touchpoint.</p>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 40%;">Student</th>
+                  <th>Last Activity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Ayana Brooks</td>
+                  <td>
+                    Completed Mentor Survey
+                    <div class="last-activity">Today at 9:42 AM</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Carlos Taylor</td>
+                  <td>
+                    Viewed STEM Fair Briefing
+                    <div class="last-activity">Yesterday at 3:18 PM</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Jordan Patel</td>
+                  <td>
+                    Missed Session Check-in
+                    <div class="last-activity">3 days ago</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="roster-card-footer">
+              <p class="last-activity" style="margin: 0;">Showing the latest 3 students. Use the full roster to remove or edit details.</p>
+              <a class="roster-link" href="student-roster.html">Open student roster</a>
             </div>
           </div>
 

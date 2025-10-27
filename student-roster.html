@@ -126,6 +126,21 @@
       border-radius: 6px;
       border: 1px solid var(--border);
     }
+
+    .remove-btn {
+      border: 1px solid #dc2626;
+      background: transparent;
+      color: #dc2626;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .remove-btn:hover {
+      background: rgba(220, 38, 38, 0.08);
+    }
   </style>
 </head>
 <body>
@@ -162,13 +177,14 @@
       <table>
         <thead>
           <tr>
-            <th style="width: 22%;">Student</th>
-            <th style="width: 22%;">Email</th>
+            <th style="width: 20%;">Student</th>
+            <th style="width: 20%;">Email</th>
             <th style="width: 12%;">NetID</th>
             <th style="width: 16%;">Mentor</th>
-            <th style="width: 14%;">Join Date</th>
-            <th style="width: 14%;">Survey Status</th>
-            <th>Submitted On</th>
+            <th style="width: 12%;">Join Date</th>
+            <th style="width: 12%;">Survey Status</th>
+            <th style="width: 12%;">Submitted On</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -180,6 +196,7 @@
             <td>Jan 12, 2024</td>
             <td>Complete</td>
             <td>Apr 10, 2024</td>
+            <td><button class="remove-btn" type="button">Remove from program</button></td>
           </tr>
           <tr>
             <td>Samantha Lee</td>
@@ -189,6 +206,7 @@
             <td>Feb 2, 2024</td>
             <td>Missing</td>
             <td>—</td>
+            <td><button class="remove-btn" type="button">Remove from program</button></td>
           </tr>
           <tr>
             <td>Marcus Rivera</td>
@@ -198,6 +216,7 @@
             <td>Nov 28, 2023</td>
             <td>In Progress</td>
             <td>Apr 05, 2024</td>
+            <td><button class="remove-btn" type="button">Remove from program</button></td>
           </tr>
         </tbody>
       </table>
