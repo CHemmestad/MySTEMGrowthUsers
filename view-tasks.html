@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Tasks – MySTEMGrowth</title>
+  <style>
+    :root {
+      --nav-bg: #101932;
+      --nav-text: #ffffff;
+      --accent: #1D2B53;
+      --border: #d8deec;
+      --bg: #f5f7fb;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #111827;
+    }
+
+    .main-nav {
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 28px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--nav-text);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .nav-spacer {
+      flex: 1;
+    }
+
+    .nav-action {
+      color: var(--nav-bg);
+      background: #d9d9d9;
+      text-decoration: none;
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    main {
+      padding: 32px clamp(16px, 4vw, 64px);
+      display: grid;
+      gap: 24px;
+    }
+
+    section {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: clamp(18px, 3vw, 26px);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(26px, 4vw, 32px);
+      color: var(--accent);
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 20px;
+      color: var(--accent);
+    }
+
+    p {
+      margin: 0 0 16px;
+      color: #475569;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .filters select,
+    .filters input {
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .status-open {
+      background: rgba(250, 204, 21, 0.22);
+      color: #92400e;
+    }
+
+    .status-done {
+      background: rgba(14, 165, 233, 0.18);
+      color: #0369a1;
+    }
+
+    .status-dismissed {
+      background: rgba(239, 68, 68, 0.15);
+      color: #b91c1c;
+    }
+
+    .task-btn {
+      border: 1px solid #1d2b53;
+      background: transparent;
+      color: #1d2b53;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .task-btn:hover {
+      background: rgba(29, 43, 83, 0.08);
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+      color: #374151;
+    }
+
+    .task-btn-danger {
+      border-color: #dc2626;
+      color: #dc2626;
+    }
+
+    .task-btn-danger:hover {
+      background: rgba(220, 38, 38, 0.08);
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-logo">
+      <img src="images/tree_sprout_new.png" alt="MySTEMGrowth sprout logo" height="60">
+    </div>
+    <div class="nav-links">
+      <a href="role-select.html">Roles</a>
+      <a href="program-coordinator.html">Coordinator Home</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <a href="#" class="nav-action">Sign Out</a>
+  </nav>
+
+  <main>
+    <section>
+      <h1>Task Board</h1>
+      <p>Monitor every reminder tied to survey operations. Use the filters to find outstanding work, mark items done, or clear tasks that are no longer needed.</p>
+
+      <div class="filters">
+        <input type="search" placeholder="Search by task title">
+        <select>
+          <option>Type: All</option>
+          <option>SURVEY_REMINDER_PRE</option>
+          <option>SURVEY_REMINDER_POST</option>
+          <option>CUSTOM</option>
+        </select>
+        <select>
+          <option>Status: All</option>
+          <option>Status: Open</option>
+          <option>Status: Done</option>
+          <option>Status: Dismissed</option>
+        </select>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 24%;">Task</th>
+            <th style="width: 20%;">Type</th>
+            <th style="width: 12%;">Due date</th>
+            <th style="width: 16%;">Status</th>
+            <th>Notes</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Send pre-survey reminders</td>
+            <td>SURVEY_REMINDER_PRE</td>
+            <td>Apr 12, 2024</td>
+            <td><span class="status-pill status-open">Open</span></td>
+            <td>Second wave of emails for new students.</td>
+            <td><button class="task-btn" type="button">Mark done</button></td>
+          </tr>
+          <tr>
+            <td>Send post-survey reminders</td>
+            <td>SURVEY_REMINDER_POST</td>
+            <td>Apr 29, 2024</td>
+            <td><span class="status-pill status-open">Open</span></td>
+            <td>Include SMS reminder for waitlisted students.</td>
+            <td><button class="task-btn" type="button">Mark done</button></td>
+          </tr>
+          <tr>
+            <td>Draft custom follow-up for students missing post-survey</td>
+            <td>CUSTOM</td>
+            <td>Apr 22, 2024</td>
+            <td><span class="status-pill status-open">Open</span></td>
+            <td>Share list with district partners.</td>
+            <td><button class="task-btn" type="button">Mark done</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Task Actions</h2>
+      <ul>
+        <li>Use filters to triage which reminders need attention before the next survey window.</li>
+        <li>Mark tasks done to keep historical records, or dismiss them once they’re no longer relevant.</li>
+        <li>Spin up a new reminder directly from the coordinator dashboard when gaps appear.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Completed Tasks</h2>
+      <p>Review done reminders before deleting them permanently.</p>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 24%;">Task</th>
+            <th style="width: 20%;">Type</th>
+            <th style="width: 12%;">Due date</th>
+            <th style="width: 16%;">Status</th>
+            <th>Notes</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Prepare mid-program check-in form</td>
+            <td>CUSTOM</td>
+            <td>May 02, 2024</td>
+            <td><span class="status-pill status-done">Done</span></td>
+            <td>Attached to resource gallery.</td>
+            <td><button class="task-btn task-btn-danger" type="button">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Compile pre-survey participation deck</td>
+            <td>SURVEY_REMINDER_PRE</td>
+            <td>Apr 05, 2024</td>
+            <td><span class="status-pill status-done">Done</span></td>
+            <td>Shared with leadership.</td>
+            <td><button class="task-btn task-btn-danger" type="button">Delete</button></td>
+                </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Dismissed Tasks</h2>
+      <p>These reminders were dropped or replaced. Remove them if they’re no longer relevant.</p>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 24%;">Task</th>
+            <th style="width: 20%;">Type</th>
+            <th style="width: 12%;">Date</th>
+            <th style="width: 16%;">Status</th>
+            <th>Notes</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Schedule optional coaching sync</td>
+            <td>CUSTOM</td>
+            <td>Apr 01, 2024</td>
+            <td><span class="status-pill status-dismissed">Dismissed</span></td>
+            <td>Rescheduled for fall cohort only.</td>
+            <td><button class="task-btn task-btn-danger" type="button">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Prep in-person survey booth</td>
+            <td>SURVEY_REMINDER_POST</td>
+            <td>Mar 28, 2024</td>
+            <td><span class="status-pill status-dismissed">Dismissed</span></td>
+            <td>No longer needed due to virtual event.</td>
+            <td><button class="task-btn task-btn-danger" type="button">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

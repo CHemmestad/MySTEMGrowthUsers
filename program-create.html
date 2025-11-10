@@ -138,6 +138,72 @@
       font-weight: 600;
       cursor: pointer;
     }
+
+    .resource-add-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .resource-add-row input {
+      flex: 1 1 220px;
+      margin-top: 0;
+    }
+
+    .resource-add-row button {
+      margin-top: 0;
+      white-space: nowrap;
+    }
+
+    .resource-pills {
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .resource-pills li {
+      background: #eef2ff;
+      border: 1px solid #c7d2fe;
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 14px;
+      color: #1d2b53;
+    }
+
+    .form-subheading {
+      margin-top: 28px;
+      margin-bottom: 6px;
+      font-size: 16px;
+      color: #475569;
+      font-weight: 700;
+    }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .checkbox-grid label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      margin: 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+
+    .checkbox-grid input[type="checkbox"] {
+      width: auto;
+      margin: 0;
+    }
   </style>
 </head>
 <body>
@@ -168,10 +234,29 @@
       </select>
 
       <label for="program-description">Description</label>
-      <textarea id="program-description" placeholder="Brief summary for mentors and students."></textarea>
+      <textarea id="program-description" placeholder="Brief summary for students and coordinators."></textarea>
 
-      <label for="program-owner">Primary coordinator</label>
-      <input id="program-owner" type="text" placeholder="Assign coordinator email">
+      <p class="form-subheading">Attach starter resources</p>
+      <div class="resource-add-row">
+        <input id="resource-search" type="text" placeholder="Search library or paste resource link">
+        <button type="button">Add Resource</button>
+      </div>
+      <ul class="resource-pills">
+        <li>Welcome Packet.pdf</li>
+        <li>Icebreaker Activities</li>
+        <li>STEM Career Stories</li>
+      </ul>
+
+      <p class="form-subheading">Demographic info to request at student invite</p>
+      <p style="margin-top: 4px; color: #64748b;">Select the optional fields coordinators should collect when adding students.</p>
+      <div class="checkbox-grid">
+        <label><input type="checkbox" checked>Sex</label>
+        <label><input type="checkbox" checked>Ethnicity</label>
+        <label><input type="checkbox">Race</label>
+        <label><input type="checkbox">Preferred pronouns</label>
+        <label><input type="checkbox">First-gen status</label>
+        <label><input type="checkbox">Free/reduced lunch eligibility</label>
+      </div>
 
       <button type="button">Generate Program</button>
     </section>
@@ -179,9 +264,9 @@
     <section>
       <h2>Steps After Creation</h2>
       <ol>
-        <li>Share the auto-generated program code with mentors and students.</li>
+        <li>Share the auto-generated program code with students and partner staff.</li>
         <li>Import existing resources or copy from a previous cohort.</li>
-        <li>Invite mentors and assign them to student groups.</li>
+        <li>Invite coordinators or facilitators and assign them to student groups.</li>
         <li>Publish welcome announcements through the communications hub.</li>
       </ol>
     </section>

@@ -13,6 +13,33 @@
       --bg: #f5f7fb;
     }
 
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .status-not-started {
+      background: rgba(239, 68, 68, 0.15);
+      color: #b91c1c;
+    }
+
+    .status-in-progress {
+      background: rgba(250, 204, 21, 0.22);
+      color: #92400e;
+    }
+
+    .status-complete {
+      background: rgba(14, 165, 233, 0.18);
+      color: #0369a1;
+    }
+
     * {
       box-sizing: border-box;
       font-family: "Segoe UI", Arial, sans-serif;
@@ -158,19 +185,21 @@
   <main>
     <section>
       <h1>Student Roster</h1>
-      <p>Manage enrollment, mentor assignments, and contact details for the selected program. In the live app, records populate from `getUsersInProgram`.</p>
+      <p>Manage enrollment, survey progress, and contact details for the selected program. In the live app, records populate from <code>getUsersInProgram</code>.</p>
 
       <div class="filters">
         <input type="search" placeholder="Search by name or NetID">
         <select>
-          <option>All mentors</option>
-          <option>Mentor: J. Patel</option>
-          <option>Mentor: K. Adams</option>
+          <option>Pre-survey status: All</option>
+          <option>Pre-survey status: Complete</option>
+          <option>Pre-survey status: In Progress</option>
+          <option>Pre-survey status: Not Started</option>
         </select>
         <select>
-          <option>Status: Active</option>
-          <option>Status: Pending</option>
-          <option>Status: Graduated</option>
+          <option>Post-survey status: All</option>
+          <option>Post-survey status: Complete</option>
+          <option>Post-survey status: In Progress</option>
+          <option>Post-survey status: Not Started</option>
         </select>
       </div>
 
@@ -180,42 +209,82 @@
             <th style="width: 20%;">Student</th>
             <th style="width: 20%;">Email</th>
             <th style="width: 12%;">NetID</th>
-            <th style="width: 16%;">Mentor</th>
-            <th style="width: 12%;">Join Date</th>
-            <th style="width: 12%;">Survey Status</th>
-            <th style="width: 12%;">Submitted On</th>
+            <th style="width: 12%;">Pre-survey status</th>
+            <th style="width: 12%;">Pre updated</th>
+            <th style="width: 12%;">Post-survey status</th>
+            <th style="width: 12%;">Post updated</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Alex Johnson</td>
-            <td>ajohnson@example.edu</td>
-            <td>ajohn23</td>
-            <td>J. Patel</td>
-            <td>Jan 12, 2024</td>
-            <td>Complete</td>
+            <td>Ayana Brooks</td>
+            <td>abrooks@example.edu</td>
+            <td>abrooks5</td>
+            <td><span class="status-pill status-complete">Complete</span></td>
+            <td>Apr 09, 2024</td>
+            <td><span class="status-pill status-in-progress">In Progress</span></td>
             <td>Apr 10, 2024</td>
             <td><button class="remove-btn" type="button">Remove from program</button></td>
           </tr>
           <tr>
-            <td>Samantha Lee</td>
-            <td>slee@example.edu</td>
-            <td>slee18</td>
-            <td>K. Adams</td>
-            <td>Feb 2, 2024</td>
-            <td>Missing</td>
-            <td>—</td>
+            <td>Carlos Taylor</td>
+            <td>ctaylor@example.edu</td>
+            <td>ctaylor8</td>
+            <td><span class="status-pill status-complete">Complete</span></td>
+            <td>Apr 08, 2024</td>
+            <td><span class="status-pill status-not-started">Not Started</span></td>
+            <td>Apr 09, 2024</td>
             <td><button class="remove-btn" type="button">Remove from program</button></td>
           </tr>
           <tr>
-            <td>Marcus Rivera</td>
-            <td>mrivera@example.edu</td>
-            <td>mriver31</td>
-            <td>J. Patel</td>
-            <td>Nov 28, 2023</td>
-            <td>In Progress</td>
+            <td>Jordan Patel</td>
+            <td>jpatel@example.edu</td>
+            <td>jpatel11</td>
+            <td><span class="status-pill status-in-progress">In Progress</span></td>
+            <td>Apr 07, 2024</td>
+            <td><span class="status-pill status-not-started">Not Started</span></td>
+            <td>Apr 08, 2024</td>
+            <td><button class="remove-btn" type="button">Remove from program</button></td>
+          </tr>
+          <tr>
+            <td>Leila Kim</td>
+            <td>lkim@example.edu</td>
+            <td>lkim13</td>
+            <td><span class="status-pill status-not-started">Not Started</span></td>
             <td>Apr 05, 2024</td>
+            <td><span class="status-pill status-not-started">Not Started</span></td>
+            <td>Apr 05, 2024</td>
+            <td><button class="remove-btn" type="button">Remove from program</button></td>
+          </tr>
+          <tr>
+            <td>Naomi Howard</td>
+            <td>nhoward@example.edu</td>
+            <td>nhoward7</td>
+            <td><span class="status-pill status-complete">Complete</span></td>
+            <td>Apr 06, 2024</td>
+            <td><span class="status-pill status-in-progress">In Progress</span></td>
+            <td>Apr 09, 2024</td>
+            <td><button class="remove-btn" type="button">Remove from program</button></td>
+          </tr>
+          <tr>
+            <td>Felix Reyes</td>
+            <td>freyes@example.edu</td>
+            <td>freyes12</td>
+            <td><span class="status-pill status-in-progress">In Progress</span></td>
+            <td>Apr 04, 2024</td>
+            <td><span class="status-pill status-not-started">Not Started</span></td>
+            <td>Apr 05, 2024</td>
+            <td><button class="remove-btn" type="button">Remove from program</button></td>
+          </tr>
+          <tr>
+            <td>Priya Shah</td>
+            <td>pshah@example.edu</td>
+            <td>pshah19</td>
+            <td><span class="status-pill status-not-started">Not Started</span></td>
+            <td>Apr 03, 2024</td>
+            <td><span class="status-pill status-not-started">Not Started</span></td>
+            <td>Apr 03, 2024</td>
             <td><button class="remove-btn" type="button">Remove from program</button></td>
           </tr>
         </tbody>
@@ -226,7 +295,7 @@
       <h2>Roster Actions</h2>
       <ul>
         <li>Approve pending student requests submitted through the public registration form.</li>
-        <li>Export roster with mentor assignments for reporting.</li>
+        <li>Export roster with pre/post survey status for district and funder reporting.</li>
         <li>Follow up on survey submissions directly from the roster by filtering for missing or overdue entries.</li>
         <li>Remove students who graduate or transfer to another cohort.</li>
       </ul>

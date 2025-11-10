@@ -13,6 +13,7 @@
       --border: #d8deec;
       --muted: #475569;
       --bg: #f5f7fb;
+      --card-bg: #eef2fb;
     }
 
     * {
@@ -74,36 +75,84 @@
     }
 
     main {
-      padding: 32px clamp(16px, 4vw, 72px);
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
+      padding: 32px clamp(18px, 5vw, 72px);
+      display: grid;
+      gap: 24px;
+      max-width: 1180px;
+      margin: 0 auto 48px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: clamp(20px, 3vw, 32px);
+      display: grid;
+      gap: 18px;
     }
 
     .page-header {
       background: #ffffff;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: clamp(20px, 3vw, 28px);
+      border-radius: 12px;
+      padding: clamp(24px, 3vw, 36px);
       display: grid;
-      gap: 16px;
+      gap: 20px;
+    }
+
+    .header-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: flex-start;
+      justify-content: space-between;
     }
 
     .title-block h1 {
       margin: 0;
-      font-size: clamp(26px, 4vw, 34px);
+      font-size: clamp(28px, 4vw, 38px);
       color: var(--accent);
     }
 
     .title-block p {
-      margin: 4px 0 0;
+      margin: 6px 0 0;
       color: var(--muted);
+      font-size: 17px;
+    }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .view-student {
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 8px;
+      background: transparent;
+    }
+
+    .view-student:hover {
+      background: rgba(29, 43, 83, 0.08);
+    }
+
+    .switch-program {
+      padding: 10px 20px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: 600;
+      text-decoration: none;
     }
 
     .program-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 18px;
+      gap: 24px;
       align-items: center;
       justify-content: space-between;
     }
@@ -116,9 +165,6 @@
       flex-wrap: wrap;
       gap: 18px;
       color: #1f2937;
-    }
-
-    .meta-list li {
       font-size: 15px;
     }
 
@@ -126,144 +172,103 @@
       color: var(--accent);
     }
 
-    .switch-program {
-      padding: 9px 18px;
-      border-radius: 4px;
-      background: var(--accent);
-      color: #ffffff;
-      font-weight: 600;
-      text-decoration: none;
+    .quick-help {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
     }
 
-    .stats-row {
+    .program-overview {
+      background: var(--card-bg);
+      border-color: rgba(16, 25, 50, 0.08);
+    }
+
+    .overview-metrics {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
     }
 
-    .stats-row div {
-      background: var(--accent-light);
-      border-radius: 8px;
-      padding: 12px 16px;
-    }
-
-    .stats-row strong {
-      display: block;
-      font-size: 24px;
-      color: var(--accent);
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr);
-      gap: 24px;
-    }
-
-    section,
-    aside {
+    .metric-tile {
       background: #ffffff;
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: clamp(18px, 2.5vw, 26px);
+      padding: 16px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .metric-label {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .metric-value {
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .group-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
     }
 
     h2 {
-      margin: 0 0 12px;
+      margin: 0;
       font-size: 22px;
       color: var(--accent);
     }
 
-    .primary-grid {
-      display: grid;
-      gap: 20px;
-    }
-
-    .task-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-    }
-
-    .task-list article {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 14px 16px;
-    }
-
-    .task-list h3 {
-      margin: 0 0 6px;
+    h3 {
+      margin: 0;
       font-size: 18px;
       color: #1f2937;
     }
 
-    .task-links {
+    .workflow-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .workflow-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+      background: #ffffff;
+    }
+
+    .workflow-primary {
+      border: 1px solid rgba(29, 43, 83, 0.45);
+      box-shadow: 0 8px 24px rgba(16, 25, 50, 0.08);
+    }
+
+    .workflow-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .workflow-links {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 12px;
     }
 
-    .task-links a {
+    .workflow-links a {
       text-decoration: none;
       color: var(--accent);
       font-weight: 600;
       border-bottom: 1px solid transparent;
     }
 
-    .task-links a:hover {
+    .workflow-links a:hover {
       border-color: var(--accent);
-    }
-
-    .student-roster-card {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #ffffff;
-      padding: clamp(18px, 3vw, 28px);
-      display: grid;
-      gap: 16px;
-    }
-
-    .student-roster-card table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 15px;
-    }
-
-    .student-roster-card th,
-    .student-roster-card td {
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-      text-align: left;
-    }
-
-    .student-roster-card tbody tr:last-child td {
-      border-bottom: none;
-    }
-
-    .last-activity {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .roster-card-footer {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .roster-link {
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-      border-radius: 6px;
-      padding: 8px 14px;
-    }
-
-    .roster-link:hover {
-      background: var(--accent-light);
     }
 
     table {
@@ -275,32 +280,137 @@
     th,
     td {
       text-align: left;
-      padding: 8px 0;
+      padding: 10px 0;
       border-bottom: 1px solid var(--border);
     }
 
-    ul {
-      margin: 10px 0 0;
-      padding-left: 20px;
-      color: #374151;
+    th {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: rgba(17, 24, 39, 0.75);
     }
 
-    aside h3 {
-      margin: 0 0 10px;
-      font-size: 18px;
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .status-not-started {
+      background: rgba(239, 68, 68, 0.15);
+      color: #b91c1c;
+    }
+
+    .status-in-progress {
+      background: rgba(250, 204, 21, 0.22);
+      color: #92400e;
+    }
+
+    .status-complete {
+      background: rgba(14, 165, 233, 0.18);
+      color: #0369a1;
+    }
+
+    .tasks-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .pill-button {
+      border: 1px solid var(--accent);
+      background: #ffffff;
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-button.primary {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .tasks-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .task-item {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+      background: #ffffff;
+    }
+
+    .task-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
       color: #1f2937;
     }
 
-    aside ul {
-      margin: 0 0 16px;
+    .task-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--muted);
     }
 
-    aside a {
-      color: var(--accent);
-      text-decoration: none;
+    .task-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .empty-state {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .resources-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .topic-form {
+      display: grid;
+      gap: 10px;
+    }
+
+    label {
+      font-size: 14px;
       font-weight: 600;
-      display: inline-block;
-      margin-top: 8px;
+      color: #1f2937;
+    }
+
+    input[type="text"],
+    select {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 14px;
+    }
+
+    small {
+      color: var(--muted);
+      font-size: 13px;
     }
 
     footer {
@@ -310,9 +420,10 @@
       margin: 12px 0 32px;
     }
 
-    @media (max-width: 920px) {
-      .layout {
-        grid-template-columns: 1fr;
+    @media (max-width: 900px) {
+      .header-top {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
 
@@ -341,9 +452,15 @@
 
   <main>
     <header class="page-header">
-      <div class="title-block">
-        <h1>STEM Scholars 2024</h1>
-        <p>Coordinator view for the current STEM Scholars cohort. Use this page to keep the roster aligned, mentors supported, and resources fresh.</p>
+      <div class="header-top">
+        <div class="title-block">
+          <h1>STEM Scholars 2024</h1>
+          <p>Manage cohorts, track tasks for surveys, and keep students on track. Choose a program to get started.</p>
+        </div>
+        <div class="header-actions">
+          <a class="view-student" href="#">View as Student</a>
+          <a class="switch-program" href="program-select.html">Switch Program</a>
+        </div>
       </div>
       <div class="program-meta">
         <ul class="meta-list">
@@ -351,193 +468,226 @@
           <li><strong>Coordinator:</strong> Maya Jenkins</li>
           <li><strong>Last updated:</strong> Apr 12</li>
         </ul>
-        <a class="switch-program" href="program-select.html">Switch Program</a>
-      </div>
-      <div class="stats-row">
-        <div>
-          <strong>128</strong>
-          Students enrolled
-        </div>
-        <div>
-          <strong>24</strong>
-          Mentors engaged
-        </div>
-        <div>
-          <strong>43</strong>
-          Resources published
-        </div>
-        <div>
-          <strong>92%</strong>
-          Session attendance
-        </div>
-        <div>
-          <strong>4</strong>
-          Milestones this month
-        </div>
+        <ul class="quick-help">
+          <li>Confirm pre- and post-survey windows before inviting students.</li>
+          <li>Add program-specific resources with custom topics for quick discovery.</li>
+          <li>Use tasks to plan nudges and follow-ups around survey cycles.</li>
+        </ul>
       </div>
     </header>
 
-    <div class="layout">
-      <div class="primary">
-        <section class="primary-grid">
-          <div>
-            <h2>Key Workflows</h2>
-            <div class="task-list">
-              <article>
-                <h3>Student Roster</h3>
-                <p>Approve new student joins, export contact lists, and manage mentor pairings.</p>
-                <div class="task-links">
-                  <a href="student-roster.html">View roster</a>
-                  <a href="student-updates.html">Pending updates</a>
-                </div>
-              </article>
-              <article>
-                <h3>Mentor Support</h3>
-                <p>Coordinate mentor meetings, track session feedback, and share follow-up tasks.</p>
-                <div class="task-links">
-                  <a href="communications-hub.html">Log mentor touchpoints</a>
-                </div>
-              </article>
-              <article>
-                <h3>Resource Library</h3>
-                <p>Share documents, links, and announcements that appear in the student portal.</p>
-                <div class="task-links">
-                  <a href="resource-library.html">Manage library</a>
-                  <a href="resource-new.html">Add resource</a>
-                </div>
-              </article>
-              <article>
-                <h3>Communications</h3>
-                <p>Send digests to mentors, track outreach history, and log follow-up notes.</p>
-                <div class="task-links">
-                  <a href="communications-hub.html">Open communications</a>
-                </div>
-              </article>
-            </div>
-          </div>
-
-          <div class="student-roster-card">
-            <div>
-              <h2>Current Students</h2>
-              <p class="last-activity">Snapshot of the students assigned to this program and their latest platform touchpoint.</p>
-            </div>
-            <table>
-              <thead>
-                <tr>
-                  <th style="width: 40%;">Student</th>
-                  <th>Last Activity</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Ayana Brooks</td>
-                  <td>
-                    Completed Mentor Survey
-                    <div class="last-activity">Today at 9:42 AM</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Carlos Taylor</td>
-                  <td>
-                    Viewed STEM Fair Briefing
-                    <div class="last-activity">Yesterday at 3:18 PM</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Jordan Patel</td>
-                  <td>
-                    Missed Session Check-in
-                    <div class="last-activity">3 days ago</div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="roster-card-footer">
-              <p class="last-activity" style="margin: 0;">Showing the latest 3 students. Use the full roster to remove or edit details.</p>
-              <a class="roster-link" href="student-roster.html">Open student roster</a>
-            </div>
-          </div>
-
-          <div>
-            <h2>Upcoming Milestones</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th style="width: 18%;">Date</th>
-                  <th style="width: 48%;">Milestone</th>
-                  <th style="width: 22%;">Owner</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Apr 15</td>
-                  <td>Submit monthly progress reports via Programs overview.</td>
-                  <td>Program Leads</td>
-                  <td>In Review</td>
-                </tr>
-                <tr>
-                  <td>Apr 21</td>
-                  <td>Finalize mentor training agenda and materials.</td>
-                  <td>Training Team</td>
-                  <td>On Track</td>
-                </tr>
-                <tr>
-                  <td>May 5</td>
-                  <td>Close STEM Fair registration and share student list.</td>
-                  <td>Events</td>
-                  <td>At Risk</td>
-                </tr>
-                <tr>
-                  <td>May 20</td>
-                  <td>Upload Q2 budget reconciliation documents.</td>
-                  <td>Finance</td>
-                  <td>Not Started</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div>
-            <h2>Recent Activity</h2>
-            <ul>
-              <li>Mentor Training Playbook updated &mdash; 2 days ago.</li>
-              <li>4 students requested roster changes &mdash; review in Pending updates.</li>
-              <li>STEM Fair logistics note posted to Resource Library.</li>
-              <li>Weekly coordinator digest sent to mentors.</li>
-            </ul>
-          </div>
-        </section>
+    <section class="card program-overview">
+      <h2>Program Overview</h2>
+      <div class="overview-metrics" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));">
+        <div class="metric-tile">
+          <span class="metric-label">Students</span>
+          <span class="metric-value">128</span>
+          <span class="metric-label">18 pending invites</span>
+        </div>
+        <div class="metric-tile">
+          <span class="metric-label">Pre-survey status</span>
+          <span class="metric-value">92%</span>
+          <span class="metric-label">Last updated 04/09/2024</span>
+        </div>
+        <div class="metric-tile">
+          <span class="metric-label">Post-survey status</span>
+          <span class="metric-value">76%</span>
+          <span class="metric-label">Last updated 04/10/2024</span>
+        </div>
+        <div class="metric-tile">
+          <span class="metric-label">Open Tasks</span>
+          <span class="metric-value">3</span>
+        </div>
+        <div class="metric-tile">
+          <span class="metric-label">Resources</span>
+          <span class="metric-value">4</span>
+        </div>
       </div>
+      <div class="group-columns">
+        <div>
+          <h3>What’s next</h3>
+          <p class="empty-state" style="color: #1f2937;">Review post-survey status for pending students and schedule the next reminder task.</p>
+        </div>
+        <div>
+          <h3>Term details</h3>
+          <ul class="quick-help" style="color: #1f2937;">
+            <li>Program window: Jan 22 – May 30</li>
+            <li>Survey cadence: pre (week 1), post (final week)</li>
+            <li>Primary contact: maya.jenkins@mystemgrowth.org</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-      <aside>
-        <h3>Today</h3>
-        <ul>
-          <li>Confirm transportation requests with Roosevelt High.</li>
-          <li>Reply to 3 mentor onboarding questions.</li>
-          <li>Check survey participation for April session.</li>
-        </ul>
-        <a href="coordinator-checklist.html">Open daily checklist</a>
+    <section class="card">
+      <h2>Key Workflows</h2>
+      <div class="workflow-list">
+        <article class="workflow-card workflow-primary">
+          <h3>Student Roster</h3>
+          <p>Manage enrollments, update student info, and export rosters for survey tracking.</p>
+          <div class="workflow-links">
+            <a href="student-roster.html">Open roster</a>
+            <a href="student-roster.html#exports">Export roster for surveys</a>
+          </div>
+        </article>
+        <article class="workflow-card">
+          <h3>Survey Preparation</h3>
+          <p>Confirm survey windows, templates, and automations before scheduling reminders.</p>
+          <div class="workflow-links">
+            <a href="student-survey-gallery.html">Survey gallery</a>
+            <a href="survey-question-examples.html">Question examples</a>
+          </div>
+        </article>
+        <article class="workflow-card">
+          <h3>Resources</h3>
+          <p>Share guides, recordings, and checklists that keep students ready for survey milestones.</p>
+          <div class="workflow-links">
+            <a href="manage-resources.html">Manage program resources</a>
+            <a href="resource-library.html">Add resource</a>
+            <a href="resource-new.html">Create resource</a>
+          </div>
+        </article>
+      </div>
+    </section>
 
-        <h3>Helpful Links</h3>
-        <ul>
-          <li><a href="#">Coordinator Handbook (PDF)</a></li>
-          <li><a href="#">Platform release notes</a></li>
-          <li><a href="#">Support ticket portal</a></li>
-        </ul>
+    <section class="card">
+      <div class="tasks-header">
+        <h2>Tasks</h2>
+      </div>
+      <template id="tasks-empty-state">
+        No tasks yet. Create a reminder to kick off pre-surveys or follow up on post-surveys.
+      </template>
+      <div class="tasks-list">
+        <div class="task-item">
+          <p class="task-title">Send pre-survey reminders</p>
+          <div class="task-meta">
+            <span>Type: SURVEY_REMINDER_PRE</span>
+            <span>Due: Apr 12</span>
+          </div>
+          <div class="task-actions">
+            <a class="pill-button primary" href="view-tasks.html">Mark done</a>
+            <a class="pill-button" href="view-tasks.html">Dismiss</a>
+          </div>
+        </div>
+        <div class="task-item">
+          <p class="task-title">Send post-survey reminders</p>
+          <div class="task-meta">
+            <span>Type: SURVEY_REMINDER_POST</span>
+            <span>Due: Apr 29</span>
+          </div>
+          <div class="task-actions">
+            <a class="pill-button primary" href="view-tasks.html">Mark done</a>
+            <a class="pill-button" href="view-tasks.html">Dismiss</a>
+          </div>
+        </div>
+        <div class="task-item">
+          <p class="task-title">Draft custom follow-up for students missing post-survey</p>
+          <div class="task-meta">
+            <span>Type: CUSTOM</span>
+            <span>Due: Apr 22</span>
+          </div>
+          <div class="task-actions">
+            <a class="pill-button primary" href="view-tasks.html">Mark done</a>
+            <a class="pill-button" href="view-tasks.html">Dismiss</a>
+          </div>
+        </div>
+      </div>
+      <div class="workflow-links">
+        <a href="create-task.html">Create task</a>
+        <a href="view-tasks.html">View all tasks</a>
+      </div>
+    </section>
 
-        <h3>Contacts</h3>
-        <ul>
-          <li>Maya Jenkins &mdash; Regional Director</li>
-          <li>Valerie Chen &mdash; Logistics Coordinator</li>
-          <li>David Li &mdash; Finance &amp; Compliance</li>
-        </ul>
-      </aside>
-    </div>
+    <section class="card">
+      <h2>Survey Status</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%;">Student</th>
+            <th style="width: 24%;">Pre-Survey Status</th>
+            <th style="width: 24%;">Post-Survey Status</th>
+            <th>Last Updated</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ayana Brooks</td>
+            <td><span class="status-pill status-complete">Complete</span></td>
+            <td><span class="status-pill status-in-progress">In Progress</span></td>
+            <td>Apr 10 &mdash; 4:12 PM</td>
+          </tr>
+          <tr>
+            <td>Carlos Taylor</td>
+            <td><span class="status-pill status-complete">Complete</span></td>
+            <td><span class="status-pill status-not-started">Not Started</span></td>
+            <td>Apr 9 &mdash; 1:06 PM</td>
+          </tr>
+          <tr>
+            <td>Jordan Patel</td>
+            <td><span class="status-pill status-in-progress">In Progress</span></td>
+            <td><span class="status-pill status-not-started">Not Started</span></td>
+            <td>Apr 8 &mdash; 9:40 AM</td>
+          </tr>
+          <tr>
+            <td>Leila Kim</td>
+            <td><span class="status-pill status-not-started">Not Started</span></td>
+            <td><span class="status-pill status-not-started">Not Started</span></td>
+            <td>Apr 7 &mdash; 5:18 PM</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="empty-state">Use the roster export to share status with district partners. Plan a mid-survey only when the feature flag is enabled.</p>
+      <div class="workflow-links">
+        <a href="student-roster.html">Open full roster</a>
+        <a href="student-roster.html#exports">Export roster for surveys</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Resources &amp; Topics</h2>
+      <div class="resources-grid">
+        <div>
+          <template id="resources-empty-state">
+            No custom topics yet. Add a resource and create a topic to organize your library.
+          </template>
+          <p class="empty-state">Track custom topics to group resources students need before and after surveys.</p>
+        </div>
+        <form class="topic-form">
+          <label for="topic-select">Existing topics</label>
+          <select id="topic-select">
+            <option selected disabled>Select a topic</option>
+            <option>Survey Prep</option>
+            <option>Post-survey Follow-up</option>
+            <option>Family Outreach</option>
+            <option value="">+ Add new topic...</option>
+          </select>
+          <label for="new-topic">Create a custom topic</label>
+          <input id="new-topic" type="text" placeholder="e.g., STEM Fair Post-survey" aria-describedby="topic-guidance">
+          <small id="topic-guidance">Topics are deduped automatically and store createdBy / createdAt metadata.</small>
+          <div class="workflow-links">
+            <a href="resource-new.html">Save with new topic</a>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Quick Help</h2>
+      <ul class="quick-help" style="font-size: 15px; color: #1f2937;">
+        <li>Need a new program? Use Create a New Program to set term/year &mdash; presets first, then enter a custom value if needed.</li>
+        <li>Resources shared here sync immediately to the student portal.</li>
+        <li>Archive completed tasks to keep upcoming survey reminders visible.</li>
+      </ul>
+      <div class="workflow-links">
+        <a href="program-create.html">Create a New Program</a>
+        <a href="manage-resources.html">Manage program resources</a>
+        <a href="resource-library.html">Browse resource library</a>
+      </div>
+    </section>
   </main>
 
   <footer>
-    Prototype layout for MySTEMGrowth Program Coordinator dashboard. Replace placeholder links with live routes during implementation.
+    Prototype layout for the Program Coordinator dashboard. Replace placeholder links with live routes during implementation.
   </footer>
 </body>
 </html>

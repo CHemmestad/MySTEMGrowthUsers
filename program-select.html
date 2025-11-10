@@ -12,6 +12,7 @@
       --border: #d8deec;
       --bg: #f5f7fb;
       --muted: #475569;
+      --card-surface: #f2f5ff;
     }
 
     * {
@@ -82,20 +83,21 @@
       background: #ffffff;
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: clamp(20px, 3vw, 28px);
+      padding: clamp(22px, 3vw, 32px);
       display: grid;
       gap: 12px;
     }
 
     header h1 {
       margin: 0;
-      font-size: clamp(26px, 4vw, 34px);
+      font-size: clamp(28px, 4vw, 36px);
       color: var(--accent);
     }
 
     header p {
       margin: 0;
       color: var(--muted);
+      font-size: 15px;
     }
 
     .program-grid {
@@ -106,12 +108,16 @@
     }
 
     .program-card {
-      background: #ffffff;
-      border: 1px solid var(--border);
+      background:
+        linear-gradient(140deg, rgba(29, 43, 83, 0.08), rgba(29, 43, 83, 0.02)),
+        var(--card-surface);
+      border: 1px solid rgba(16, 25, 50, 0.08);
       border-radius: 10px;
       padding: 18px 20px;
       display: grid;
       gap: 12px;
+      box-shadow: 0 12px 24px rgba(16, 25, 50, 0.08);
+      position: relative;
     }
 
     .program-card h2 {
@@ -139,9 +145,32 @@
 
     .program-card .actions {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 10px;
       margin-top: 4px;
+    }
+
+    .delete-program {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 14px;
+      border-radius: 4px;
+      border: 1px solid rgba(220, 38, 38, 0.4);
+      color: #dc2626;
+      background: rgba(255, 255, 255, 0.88);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .delete-program:hover {
+      background: #dc2626;
+      color: #ffffff;
+      border-color: #dc2626;
     }
 
     .primary-btn,
@@ -245,85 +274,112 @@
   </nav>
 
   <main>
+    <header>
+      <h1>Select a Program</h1>
+      <p>Jump into a cohort to monitor surveys, student progress, and shared resources. Choose a program to open the coordinator workspace.</p>
+    </header>
+
     <section>
       <h2>Manage Programs</h2>
 
-    <div class="program-grid">
-      <div class="program-card">
-        <h2>STEM Scholars 2024</h2>
-        <dl>
-          <div>
-            <dt>Students</dt>
-            <dd>128 enrolled • 92% attendance</dd>
+      <div class="program-grid">
+        <div class="program-card">
+          <a class="delete-program" href="#" aria-label="Delete program">Delete</a>
+          <h2>STEM Scholars 2024</h2>
+          <dl>
+            <div>
+              <dt>Students</dt>
+              <dd>128 enrolled • 18 pending invites</dd>
+            </div>
+            <div>
+              <dt>Pre-survey status</dt>
+              <dd>92% complete • Last updated 04/09/2024</dd>
+            </div>
+            <div>
+              <dt>Post-survey status</dt>
+              <dd>76% complete • Last updated 04/10/2024</dd>
+            </div>
+            <div>
+              <dt>Tasks</dt>
+              <dd>3 open tasks</dd>
+            </div>
+            <div>
+              <dt>Resources</dt>
+              <dd>4 topics • 2 custom guides added</dd>
+            </div>
+          </dl>
+          <div class="actions">
+            <a class="primary-btn" href="program-coordinator.html">View program</a>
+            <a class="tertiary-btn" href="resource-library.html">Add resource</a>
           </div>
-          <div>
-            <dt>Mentors</dt>
-            <dd>24 active mentors</dd>
+        </div>
+
+        <div class="program-card">
+          <a class="delete-program" href="#" aria-label="Delete program">Delete</a>
+          <h2>STEM Scholars 2023</h2>
+          <dl>
+            <div>
+              <dt>Students</dt>
+              <dd>112 enrolled • 8 pending invites</dd>
+            </div>
+            <div>
+              <dt>Pre-survey status</dt>
+              <dd>88% complete • Last updated 03/27/2024</dd>
+            </div>
+            <div>
+              <dt>Post-survey status</dt>
+              <dd>91% complete • Last updated 04/02/2024</dd>
+            </div>
+            <div>
+              <dt>Open Tasks</dt>
+              <dd>2 open tasks</dd>
+            </div>
+            <div>
+              <dt>Resources</dt>
+              <dd>6 topics</dd>
+            </div>
+          </dl>
+          <div class="actions">
+            <a class="primary-btn" href="program-coordinator.html">View program</a>
+            <a class="tertiary-btn" href="resource-library.html">Add resource</a>
           </div>
-          <div>
-            <dt>Next milestone</dt>
-            <dd>Apr 21 &mdash; Mentor training session</dd>
+        </div>
+
+        <div class="program-card">
+          <a class="delete-program" href="#" aria-label="Delete program">Delete</a>
+          <h2>Pathways Pilot</h2>
+          <dl>
+            <div>
+              <dt>Students</dt>
+              <dd>58 enrolled • 5 pending invites</dd>
+            </div>
+            <div>
+              <dt>Pre-survey status</dt>
+              <dd>64% complete • Last updated 04/07/2024</dd>
+            </div>
+            <div>
+              <dt>Post-survey status</dt>
+              <dd>32% complete • Last updated 04/08/2024</dd>
+            </div>
+            <div>
+              <dt>Tasks</dt>
+              <dd>5 open tasks</dd>
+            </div>
+            <div>
+              <dt>Resources</dt>
+              <dd>3 topics • 1 custom guide added</dd>
+            </div>
+          </dl>
+          <div class="actions">
+            <a class="primary-btn" href="program-coordinator.html">View program</a>
+            <a class="tertiary-btn" href="resource-library.html">Add resource</a>
           </div>
-        </dl>
-    <div class="actions">
-      <a class="primary-btn" href="program-coordinator.html">View program</a>
-      <a class="student-view-btn" href="student-home.html">View as student</a>
-      <a class="tertiary-btn" href="resource-library.html">Add resource from library</a>
-      <a class="secondary-btn" href="#">Delete program</a>
-    </div>
+        </div>
       </div>
 
-      <div class="program-card">
-        <h2>STEM Scholars 2023</h2>
-        <dl>
-          <div>
-            <dt>Students</dt>
-            <dd>114 alumni • archived resources</dd>
-          </div>
-          <div>
-            <dt>Mentors</dt>
-            <dd>18 mentors, 6 still engaged</dd>
-          </div>
-          <div>
-            <dt>Next milestone</dt>
-            <dd>Apr 30 &mdash; Publish year-end report</dd>
-          </div>
-        </dl>
-    <div class="actions">
-      <a class="primary-btn" href="program-coordinator.html">View program</a>
-      <a class="student-view-btn" href="student-home.html">View as student</a>
-      <a class="tertiary-btn" href="resource-library.html">Add resource from library</a>
-      <a class="secondary-btn" href="#">Delete program</a>
-    </div>
-      </div>
-
-      <div class="program-card">
-        <h2>Pathways Pilot</h2>
-        <dl>
-          <div>
-            <dt>Students</dt>
-            <dd>42 participating • 3 waitlisted</dd>
-          </div>
-          <div>
-            <dt>Mentors</dt>
-            <dd>12 mentors, 4 onboarding</dd>
-          </div>
-          <div>
-            <dt>Next milestone</dt>
-            <dd>May 5 &mdash; Family info night</dd>
-          </div>
-        </dl>
-    <div class="actions">
-      <a class="primary-btn" href="program-coordinator.html">View program</a>
-      <a class="student-view-btn" href="student-home.html">View as student</a>
-      <a class="tertiary-btn" href="resource-library.html">Add resource from library</a>
-      <a class="secondary-btn" href="#">Delete program</a>
-    </div>
-      </div>
-    </div>
       <div class="cta-card">
         <h3>Create a New Program</h3>
-        <p>Start a fresh cohort with built-in templates for resources and mentor onboarding. You can tweak details before inviting students.</p>
+        <p>Start a fresh cohort, set the term and year using presets or enter a custom value, then add survey tasks and resources before inviting students.</p>
         <div class="cta-actions">
           <a class="primary-btn" href="program-create.html">Add Program</a>
         </div>
@@ -334,10 +390,10 @@
       <h2>Manage Resources</h2>
       <div class="cta-card">
         <h3>Create or Link a Resource</h3>
-        <p>Resources live in a shared library so you can reuse them across programs. Add one here, then attach it from each cohort’s Resource Library.</p>
+        <p>Add materials with custom topic labels so coordinators can surface survey prep and follow-up guidance quickly across programs.</p>
         <div class="cta-actions">
           <a class="primary-btn" href="resource-new.html">Create Resource</a>
-          <a class="secondary-btn" href="resource-library.html">Manage library</a>
+          <a class="tertiary-btn" href="resource-library.html">Manage library</a>
         </div>
       </div>
     </section>

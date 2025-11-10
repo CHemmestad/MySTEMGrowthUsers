@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survey Question Examples – MySTEMGrowth</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --nav-bg: #101932;
+      --nav-text: #ffffff;
+      --accent: #1D2B53;
+      --accent-light: #4f63d7;
+      --border: #d8deec;
+      --muted: #475569;
+      --success: #0ea5e9;
+      --warning: #facc15;
+      --danger: #ef4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #0f172a;
+    }
+
+    .main-nav {
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 28px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .main-nav a {
+      color: var(--nav-text);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-spacer {
+      flex: 1;
+    }
+
+    .nav-action {
+      background: #d9d9d9;
+      color: var(--nav-bg);
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    main {
+      padding: clamp(32px, 6vw, 80px) clamp(18px, 6vw, 96px);
+      display: grid;
+      gap: clamp(28px, 4vw, 52px);
+    }
+
+    header {
+      max-width: 840px;
+      display: grid;
+      gap: 14px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(32px, 6vw, 46px);
+      color: var(--accent);
+    }
+
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .question-grid {
+      display: grid;
+      gap: clamp(20px, 3vw, 32px);
+    }
+
+    .question-card {
+      background: var(--surface);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: clamp(20px, 4vw, 28px);
+      display: grid;
+      gap: 14px;
+      box-shadow: 0 14px 28px rgba(16, 25, 50, 0.08);
+    }
+
+    .question-card h2 {
+      margin: 0;
+      font-size: 18px;
+      color: #0f172a;
+    }
+
+    .question-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .scale-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* 1. Number line slider */
+    .number-line {
+      display: grid;
+      gap: 12px;
+    }
+
+    .slider-wrapper {
+      position: relative;
+      padding: 28px 13px 6px;
+    }
+
+    .number-line input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ef4444, #f97316, #facc15, #22c55e, #0ea5e9);
+      box-shadow: inset 0 0 0 2px rgba(16, 25, 50, 0.05);
+    }
+
+    .number-line input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid var(--accent);
+      box-shadow: 0 6px 12px rgba(16, 25, 50, 0.2);
+      cursor: grab;
+    }
+
+    .number-line input[type="range"]::-moz-range-thumb {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid var(--accent);
+      box-shadow: 0 6px 12px rgba(16, 25, 50, 0.2);
+      cursor: grab;
+    }
+
+    .value-bubble {
+      position: absolute;
+      top: 0;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #ffffff;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 8px 16px rgba(29, 43, 83, 0.25);
+      transition: left 0.15s ease-out;
+      pointer-events: none;
+    }
+
+    .slider-ticks {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--muted);
+      padding: 0 13px;
+    }
+
+    .slider-value {
+      justify-self: end;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* 2. Likert radio */
+    .likert-group {
+      display: grid;
+      gap: 8px;
+    }
+
+    .likert-options {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    .likert-options label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      transition: border 0.2s, background 0.2s, transform 0.15s;
+      background: #f8fafc;
+    }
+
+    .likert-options label:hover {
+      border-color: var(--accent-light);
+      transform: translateY(-1px);
+    }
+
+    .likert-options input:checked + span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .likert-options input {
+      accent-color: var(--accent);
+    }
+
+    /* 3. Confidence segmented */
+    .segmented-control {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      background: #f8fafc;
+    }
+
+    .segmented-control input {
+      display: none;
+    }
+
+    .segmented-control label {
+      padding: 10px 0;
+      text-align: center;
+      font-size: 14px;
+      cursor: pointer;
+      color: var(--muted);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .segmented-control input:checked + label {
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* 4. Emoji confidence */
+    .emoji-scale {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .emoji-scale button {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 12px 8px;
+      background: #f1f5f9;
+      cursor: pointer;
+      transition: transform 0.15s, border 0.2s;
+    }
+
+    .emoji-scale button.selected {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .emoji-icon {
+      font-size: 28px;
+    }
+
+    .emoji-label {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* 5. Pulse meter */
+    .pulse-meter {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 160px;
+    }
+
+    .pulse-bar {
+      flex: 1;
+      background: #e2e8f0;
+      border-radius: 10px 10px 4px 4px;
+      border: none;
+      padding: 0;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+      height: calc(14px * var(--level, 5) + 28px);
+    }
+
+    .pulse-bar::after {
+      content: attr(data-value);
+      position: absolute;
+      bottom: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .pulse-bar.active {
+      background: linear-gradient(180deg, #38bdf8, #2563eb);
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
+      transform: translateY(-4px);
+    }
+
+    .pulse-bar:focus-visible {
+      outline: 3px solid rgba(37, 99, 235, 0.45);
+      outline-offset: 2px;
+    }
+
+    /* 6. Confidence dial */
+    .dial-container {
+      display: grid;
+      gap: 16px;
+    }
+
+    .dial-visual {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .dial-ring {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: conic-gradient(from -90deg, #22d3ee 0deg, #818cf8 220deg, #1d2b53 360deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: inset 0 0 0 6px rgba(255, 255, 255, 0.4), 0 12px 24px rgba(29, 43, 83, 0.25);
+    }
+
+    .dial-pointer {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      width: 8px;
+      height: 60px;
+      background: #ffffff;
+      border-radius: 999px;
+      transform-origin: bottom center;
+      transform: translateX(-50%) rotate(0deg);
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.18);
+      z-index: 1;
+    }
+
+    .dial-center {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--accent);
+      box-shadow: inset 0 0 0 2px rgba(29, 43, 83, 0.12);
+      z-index: 2;
+    }
+
+    .dial-controls {
+      flex: 1;
+      min-width: 220px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .dial-controls input[type="range"] {
+      accent-color: var(--accent);
+    }
+
+    .toggle-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .toggle-pill {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #f8fafc;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
+    }
+
+    .toggle-pill.active {
+      background: rgba(29, 43, 83, 0.12);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .toggle-summary {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .scale-label {
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+      font-size: 15px;
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .char-counter {
+      font-size: 13px;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .select-field select,
+    .schedule-inputs input,
+    .follow-up textarea,
+    .follow-up input,
+    .upload-field input,
+    .upload-field .file-label {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      font-size: 15px;
+    }
+
+    .select-field select {
+      background: #fff;
+    }
+
+    .radio-choices {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .radio-choices label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: #1f2937;
+    }
+
+    .follow-up {
+      margin-top: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .checkbox-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .checkbox-grid label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: #1f2937;
+    }
+
+    .horizontal-scale {
+      display: grid;
+      gap: 12px;
+    }
+
+    .scale-row {
+      display: grid;
+      gap: 10px;
+    }
+
+    .scale-row .scale-label {
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    .scale-options {
+      display: flex;
+      gap: 10px;
+    }
+
+    .scale-options label {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #f8fafc;
+    }
+
+    .dual-slider {
+      display: grid;
+      gap: 16px;
+    }
+
+    .dual-control {
+      display: grid;
+      gap: 6px;
+    }
+
+    .dual-control input[type="range"] {
+      accent-color: var(--accent);
+    }
+
+    .dual-value {
+      font-size: 14px;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .schedule-inputs {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    .upload-field {
+      display: grid;
+      gap: 10px;
+    }
+
+    .file-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      background: #f8fafc;
+    }
+
+    .file-label input {
+      display: none;
+    }
+
+    .scale-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .scale-button {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      font-weight: 600;
+      color: #1f2937;
+      cursor: pointer;
+      transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
+    }
+
+    .scale-button.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .scale-summary {
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .pulse-value {
+      font-weight: 600;
+      color: var(--accent);
+      text-align: right;
+    }
+
+    /* Quest path */
+    .quest-path {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 18px 12px 10px;
+      --quest-fill: 50%;
+    }
+
+    .quest-path::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 22px;
+      right: 22px;
+      height: 8px;
+      border-radius: 999px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg,
+          rgba(29, 43, 83, 0.9) 0%,
+          rgba(29, 43, 83, 0.9) var(--quest-fill),
+          #e2e8f0 var(--quest-fill),
+          #e2e8f0 100%);
+    }
+
+    .quest-node {
+      position: relative;
+      z-index: 1;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: #ffffff;
+      color: var(--muted);
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, border 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .quest-node.active {
+      border-color: var(--accent);
+      background: linear-gradient(180deg, rgba(79, 99, 215, 0.16), rgba(29, 43, 83, 0.85));
+      color: #ffffff;
+      box-shadow: 0 10px 18px rgba(29, 43, 83, 0.25);
+      transform: translateY(-6px);
+    }
+
+    .quest-node:focus-visible {
+      outline: 3px solid rgba(29, 43, 83, 0.35);
+      outline-offset: 3px;
+    }
+
+    .quest-progress {
+      text-align: left;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* Arcade light meter */
+    .arcade-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 0;
+    }
+
+    .arcade-light {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #1f2937;
+      background: radial-gradient(circle at 30% 30%, #1f2937 0%, #0f172a 60%, #020617 100%);
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+      position: relative;
+    }
+
+    .arcade-light::after {
+      content: attr(data-value);
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .arcade-light.active {
+      background: radial-gradient(circle at 30% 30%, #fde68a 0%, #f97316 45%, #c2410c 80%);
+      box-shadow: 0 0 18px rgba(249, 115, 22, 0.5), 0 0 42px rgba(249, 115, 22, 0.3);
+      transform: translateY(-4px);
+      color: #1f2937;
+    }
+
+    .arcade-light:focus-visible {
+      outline: 3px solid rgba(249, 115, 22, 0.45);
+      outline-offset: 3px;
+    }
+
+    .arcade-status {
+      font-weight: 600;
+      color: var(--accent);
+      text-align: right;
+    }
+
+    /* 7. Numeric stepper */
+    .stepper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .stepper button {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .stepper output {
+      min-width: 40px;
+      text-align: center;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .stepper-visual {
+      height: 10px;
+      width: 100%;
+      border-radius: 999px;
+      background: #e2e8f0;
+      overflow: hidden;
+    }
+
+    .stepper-visual-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #22c55e, #0ea5e9);
+      transition: width 0.2s ease;
+    }
+
+    /* 8. Matrix selection */
+    .matrix-table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 14px;
+    }
+
+    .matrix-table th,
+    .matrix-table td {
+      border: 1px solid var(--border);
+      padding: 10px;
+      text-align: center;
+    }
+
+    .matrix-table th {
+      background: #f8fafc;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .matrix-table th:first-child,
+    .matrix-table td:first-child {
+      text-align: left;
+      min-width: 190px;
+    }
+
+    .matrix-table label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .matrix-table input {
+      accent-color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-logo">
+      <img src="images/tree_sprout_new.png" alt="MySTEMGrowth sprout logo" height="60">
+    </div>
+    <a href="role-select.html">Roles</a>
+    <a href="student-survey-gallery.html">Survey gallery</a>
+    <div class="nav-spacer"></div>
+    <a class="nav-action" href="#">Sign Out</a>
+  </nav>
+
+  <main>
+    <header>
+      <h1>Survey Question Examples</h1>
+      <p>Prototype question types showcasing different response styles. Use these as inspiration when designing cohort surveys that capture sentiment, confidence, or satisfaction in the right format.</p>
+    </header>
+
+    <section class="question-grid">
+      <article class="question-card">
+        <h2>1. Number Line Slider</h2>
+        <p>How energizing was today’s session? Drag the slider to pick a value between 1 and 10.</p>
+        <div class="number-line">
+          <div class="scale-labels">
+            <span>1 · Drained</span>
+            <span>10 · Energized</span>
+          </div>
+          <div class="slider-wrapper">
+            <div class="value-bubble" id="energyBubble">6</div>
+            <input id="energySlider" type="range" min="1" max="10" step="1" value="6" aria-valuemin="0" aria-valuemax="10" aria-valuenow="6">
+          </div>
+          <span class="slider-value" id="energyValue">Boost level: 6 / 10</span>
+        </div>
+      </article>
+
+      <article class="question-card">
+        <h2>2. Likert Scale Radios</h2>
+        <p>How likely are you to recommend this program to a friend?</p>
+        <div class="likert-group" role="radiogroup" aria-label="Likelihood to recommend">
+          <div class="scale-labels">
+            <span>Extremely unlikely</span>
+            <span>Extremely likely</span>
+          </div>
+          <div class="likert-options">
+            <label>
+              <input type="radio" name="likelihood" value="1">
+              <span>1 · Very unlikely</span>
+            </label>
+            <label>
+              <input type="radio" name="likelihood" value="2">
+              <span>2 · Unlikely</span>
+            </label>
+            <label>
+              <input type="radio" name="likelihood" value="3">
+              <span>3 · Neutral</span>
+            </label>
+            <label>
+              <input type="radio" name="likelihood" value="4">
+              <span>4 · Likely</span>
+            </label>
+            <label>
+              <input type="radio" name="likelihood" value="5">
+              <span>5 · Very likely</span>
+            </label>
+          </div>
+        </div>
+      </article>
+
+      <article class="question-card">
+        <h2>3. Confidence Segments</h2>
+        <p>How confident are you in applying today’s STEM concept? Tap a segment from Not confident to Very confident.</p>
+        <div class="segmented-control" role="radiogroup" aria-label="Confidence level">
+          <input type="radio" id="conf-1" name="confidence" checked>
+          <label for="conf-1">Not confident</label>
+          <input type="radio" id="conf-2" name="confidence">
+          <label for="conf-2">Slightly</label>
+          <input type="radio" id="conf-3" name="confidence">
+          <label for="conf-3">Somewhat</label>
+          <input type="radio" id="conf-4" name="confidence">
+          <label for="conf-4">Confident</label>
+          <input type="radio" id="conf-5" name="confidence">
+          <label for="conf-5">Very confident</label>
+        </div>
+      </article>
+
+      <article class="question-card">
+        <h2>4. Emoji Mood Bar</h2>
+        <p>Which emoji best represents how supported you felt by your program team this week?</p>
+        <div class="emoji-scale" id="emojiScale">
+          <button type="button" data-emoji="😣" aria-pressed="false">
+            <span class="emoji-icon">😣</span>
+            <span class="emoji-label">Unsupported</span>
+          </button>
+          <button type="button" data-emoji="😟" aria-pressed="false">
+            <span class="emoji-icon">😟</span>
+            <span class="emoji-label">Unsure</span>
+          </button>
+          <button type="button" data-emoji="😐" aria-pressed="false">
+            <span class="emoji-icon">😐</span>
+            <span class="emoji-label">Neutral</span>
+          </button>
+          <button type="button" data-emoji="🙂" class="selected" aria-pressed="true">
+            <span class="emoji-icon">🙂</span>
+            <span class="emoji-label">Encouraged</span>
+          </button>
+          <button type="button" data-emoji="😄" aria-pressed="false">
+            <span class="emoji-icon">😄</span>
+            <span class="emoji-label">Supported</span>
+          </button>
+        </div>
+      </article>
+
+      <article class="question-card">
+        <h2>5. Pulse Meter</h2>
+        <p>How strongly did today’s workshop keep you engaged? Tap a column to set your pulse from 1 to 10.</p>
+        <div class="pulse-meter" id="pulseMeter" role="radiogroup" aria-label="Engagement pulse rating">
+          <button type="button" class="pulse-bar" data-value="1" role="radio" aria-label="1" aria-checked="false" tabindex="-1" style="--level:1"></button>
+          <button type="button" class="pulse-bar" data-value="2" role="radio" aria-label="2" aria-checked="false" tabindex="-1" style="--level:2"></button>
+          <button type="button" class="pulse-bar" data-value="3" role="radio" aria-label="3" aria-checked="false" tabindex="-1" style="--level:3"></button>
+          <button type="button" class="pulse-bar" data-value="4" role="radio" aria-label="4" aria-checked="false" tabindex="-1" style="--level:4"></button>
+          <button type="button" class="pulse-bar" data-value="5" role="radio" aria-label="5" aria-checked="false" tabindex="-1" style="--level:5"></button>
+          <button type="button" class="pulse-bar" data-value="6" role="radio" aria-label="6" aria-checked="false" tabindex="-1" style="--level:6"></button>
+          <button type="button" class="pulse-bar" data-value="7" role="radio" aria-label="7" aria-checked="true" tabindex="0" style="--level:7"></button>
+          <button type="button" class="pulse-bar" data-value="8" role="radio" aria-label="8" aria-checked="false" tabindex="-1" style="--level:8"></button>
+          <button type="button" class="pulse-bar" data-value="9" role="radio" aria-label="9" aria-checked="false" tabindex="-1" style="--level:9"></button>
+          <button type="button" class="pulse-bar" data-value="10" role="radio" aria-label="10" aria-checked="false" tabindex="-1" style="--level:10"></button>
+        </div>
+        <div class="pulse-value" id="pulseValue">Pulse: 7 / 10</div>
+      </article>
+
+      <article class="question-card">
+        <h2>6. Confidence Dial</h2>
+        <p>Spin the dial to show how ready you feel to coach someone else on this topic.</p>
+        <div class="dial-container">
+          <div class="dial-visual">
+            <div class="dial-ring">
+              <div class="dial-pointer" id="confidencePointer"></div>
+              <div class="dial-center" id="confidenceValue">6</div>
+            </div>
+            <div class="dial-controls">
+              <label for="confidenceRange">How confident are you feeling? (1 = Not ready, 10 = Very confident)</label>
+              <input type="range" id="confidenceRange" min="1" max="10" step="1" value="6" aria-valuemin="1" aria-valuemax="10" aria-valuenow="6">
+              <div class="scale-labels">
+                <span>Not ready</span>
+                <span>Very confident</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="question-card">
+        <h2>7. Numeric Stepper</h2>
+        <p>How many hours did you spend on project work outside of class this week?</p>
+        <div class="stepper" aria-label="Hours spent">
+          <button type="button" id="stepDown" aria-label="Decrease hours">–</button>
+          <output id="hoursValue" aria-live="polite">4</output>
+          <button type="button" id="stepUp" aria-label="Increase hours">+</button>
+        </div>
+        <div class="stepper-visual" aria-hidden="true">
+          <div class="stepper-visual-fill" id="stepperFill"></div>
+        </div>
+        <div class="scale-labels">
+          <span>0 · None</span>
+          <span>10+ · Extensive</span>
+        </div>
+      </article>
+
+      <article class="question-card">
+        <h2>8. Matrix Agreement</h2>
+        <p>Mark how strongly you agree with each statement about today’s collaboration.</p>
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th>Statement</th>
+              <th>Strongly disagree</th>
+              <th>Disagree</th>
+              <th>Neutral</th>
+              <th>Agree</th>
+              <th>Strongly agree</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Our team shared ideas openly.</td>
+              <td><label><input type="radio" name="matrix-1" value="strongly-disagree"></label></td>
+              <td><label><input type="radio" name="matrix-1" value="disagree"></label></td>
+              <td><label><input type="radio" name="matrix-1" value="neutral"></label></td>
+              <td><label><input type="radio" name="matrix-1" value="agree"></label></td>
+              <td><label><input type="radio" name="matrix-1" value="strongly-agree"></label></td>
+            </tr>
+            <tr>
+              <td>I felt included in decisions.</td>
+              <td><label><input type="radio" name="matrix-2" value="strongly-disagree"></label></td>
+              <td><label><input type="radio" name="matrix-2" value="disagree"></label></td>
+              <td><label><input type="radio" name="matrix-2" value="neutral"></label></td>
+              <td><label><input type="radio" name="matrix-2" value="agree"></label></td>
+              <td><label><input type="radio" name="matrix-2" value="strongly-agree"></label></td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="question-card">
+        <h2>9. Quest Path Adventure</h2>
+        <p>Choose the checkpoint that matches how far along you feel in mastering this unit — from just starting to legendary.</p>
+        <div class="quest-path" id="questPath" role="radiogroup" aria-label="Mastery checkpoint">
+          <button type="button" class="quest-node" data-step="1" role="radio" aria-checked="false" tabindex="-1">1</button>
+          <button type="button" class="quest-node" data-step="2" role="radio" aria-checked="false" tabindex="-1">2</button>
+          <button type="button" class="quest-node" data-step="3" role="radio" aria-checked="false" tabindex="-1">3</button>
+          <button type="button" class="quest-node" data-step="4" role="radio" aria-checked="false" tabindex="-1">4</button>
+          <button type="button" class="quest-node" data-step="5" role="radio" aria-checked="true" tabindex="0">5</button>
+          <button type="button" class="quest-node" data-step="6" role="radio" aria-checked="false" tabindex="-1">6</button>
+          <button type="button" class="quest-node" data-step="7" role="radio" aria-checked="false" tabindex="-1">7</button>
+          <button type="button" class="quest-node" data-step="8" role="radio" aria-checked="false" tabindex="-1">8</button>
+          <button type="button" class="quest-node" data-step="9" role="radio" aria-checked="false" tabindex="-1">9</button>
+          <button type="button" class="quest-node" data-step="10" role="radio" aria-checked="false" tabindex="-1">10</button>
+        </div>
+        <div class="quest-progress" id="questProgress">Checkpoint: 5 / 10</div>
+      </article>
+
+      <article class="question-card">
+        <h2>10. Arcade Light Meter</h2>
+        <p>Light up the arcade bulbs to show how excited you are for the next session.</p>
+        <div class="arcade-row" id="arcadeRow" role="radiogroup" aria-label="Excitement bulbs">
+          <button type="button" class="arcade-light" data-value="1" role="radio" aria-checked="false" tabindex="-1"></button>
+          <button type="button" class="arcade-light" data-value="2" role="radio" aria-checked="false" tabindex="-1"></button>
+          <button type="button" class="arcade-light" data-value="3" role="radio" aria-checked="false" tabindex="-1"></button>
+          <button type="button" class="arcade-light" data-value="4" role="radio" aria-checked="false" tabindex="-1"></button>
+          <button type="button" class="arcade-light" data-value="5" role="radio" aria-checked="false" tabindex="-1"></button>
+          <button type="button" class="arcade-light" data-value="6" role="radio" aria-checked="true" tabindex="0"></button>
+          <button type="button" class="arcade-light" data-value="7" role="radio" aria-checked="false" tabindex="-1"></button>
+          <button type="button" class="arcade-light" data-value="8" role="radio" aria-checked="false" tabindex="-1"></button>
+          <button type="button" class="arcade-light" data-value="9" role="radio" aria-checked="false" tabindex="-1"></button>
+          <button type="button" class="arcade-light" data-value="10" role="radio" aria-checked="false" tabindex="-1"></button>
+        </div>
+        <div class="arcade-status" id="arcadeStatus">Lights on: 6 / 10</div>
+      </article>
+
+      <article class="question-card">
+        <h2>11. Focus Areas Toggle</h2>
+        <p>Select one or more focus areas you plan to work on before the next session.</p>
+        <div class="toggle-group" id="focusToggle">
+          <button type="button" class="toggle-pill" data-value="Research Skills">Research Skills</button>
+          <button type="button" class="toggle-pill" data-value="Presentation Prep">Presentation Prep</button>
+          <button type="button" class="toggle-pill" data-value="Outreach for Help">Outreach for Help</button>
+          <button type="button" class="toggle-pill" data-value="Lab Practice">Lab Practice</button>
+        </div>
+        <p class="toggle-summary" id="focusSummary">No areas selected yet.</p>
+      </article>
+
+      <article class="question-card">
+        <h2>12. Support Request</h2>
+        <p>Let us know what kind of support would help you most before the next meeting.</p>
+        <div class="select-field">
+          <label class="scale-label" for="supportSelect">Support type</label>
+          <select id="supportSelect">
+            <option value="">Choose an option</option>
+            <option value="resources">Additional resources</option>
+            <option value="feedback">Feedback on my work</option>
+            <option value="checkin">Quick coordinator check-in</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+        <div class="follow-up" id="supportFollowUp" hidden>
+          <label for="supportDetails">Tell us more</label>
+          <textarea id="supportDetails" placeholder="Describe the support you’re looking for"></textarea>
+        </div>
+      </article>
+
+      <article class="question-card">
+        <h2>13. Reflection Notes</h2>
+        <p>Share a quick takeaway or moment of progress from today.</p>
+        <textarea id="reflectionNotes" maxlength="400" placeholder="Example: I finally understood how to debug our sensor readings."></textarea>
+        <div class="char-counter" id="reflectionCounter">0 / 400</div>
+      </article>
+
+      <article class="question-card">
+        <h2>14. Agreement Snapshot</h2>
+        <p>Mark how strongly you agree with each statement.</p>
+        <div class="horizontal-scale">
+          <div class="scale-row">
+            <span class="scale-label">I can explain today’s concept.</span>
+            <div class="scale-options">
+              <label><input type="radio" name="scale-explain" value="SD">Strongly disagree</label>
+              <label><input type="radio" name="scale-explain" value="D">Disagree</label>
+              <label><input type="radio" name="scale-explain" value="A">Agree</label>
+              <label><input type="radio" name="scale-explain" value="SA">Strongly agree</label>
+            </div>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">My team has a clear next step.</span>
+            <div class="scale-options">
+              <label><input type="radio" name="scale-team" value="SD">Strongly disagree</label>
+              <label><input type="radio" name="scale-team" value="D">Disagree</label>
+              <label><input type="radio" name="scale-team" value="A">Agree</label>
+              <label><input type="radio" name="scale-team" value="SA">Strongly agree</label>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="question-card">
+        <h2>15. Resource Checklist</h2>
+        <p>Select the resources you’ve already reviewed this week.</p>
+        <div class="checkbox-grid">
+          <label><input type="checkbox" value="slides"> Slide deck</label>
+          <label><input type="checkbox" value="recording"> Session recording</label>
+          <label><input type="checkbox" value="worksheet"> Practice worksheet</label>
+          <label><input type="checkbox" value="discussion"> Group discussion board</label>
+        </div>
+      </article>
+
+      <article class="question-card">
+        <h2>16. Follow-Up Channel</h2>
+        <p>How would you prefer to follow up if we have questions for you?</p>
+        <div class="radio-choices">
+          <label><input type="radio" name="followup" value="email"> Email</label>
+          <label><input type="radio" name="followup" value="text"> Text message</label>
+          <label><input type="radio" name="followup" value="call"> Phone call</label>
+          <label><input type="radio" name="followup" value="office"> Office hours</label>
+        </div>
+      </article>
+
+      <article class="question-card">
+        <h2>17. Time &amp; Energy Balance</h2>
+        <p>Adjust the sliders to show your current project effort and energy.</p>
+        <div class="dual-slider">
+          <div class="dual-control">
+            <label for="timeRange">Project time invested (hours/week)</label>
+            <input type="range" id="timeRange" min="0" max="12" value="4">
+            <div class="dual-value" id="timeValueLabel">4 hrs/week</div>
+          </div>
+          <div class="dual-control">
+            <label for="energyRange">Energy left after sessions</label>
+            <input type="range" id="energyRange" min="0" max="10" value="6">
+            <div class="dual-value" id="energyValueLabel">6 / 10</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="question-card">
+        <h2>18. Scheduling Snapshot</h2>
+        <p>Share when you’re available if we need to follow up.</p>
+        <div class="schedule-inputs">
+          <label>Preferred check-in date
+            <input type="date" id="checkinDate">
+          </label>
+          <label>Time window
+            <input type="time" id="checkinTime">
+          </label>
+          <label>Alternate contact window
+            <input type="time" id="alternateTime">
+          </label>
+        </div>
+      </article>
+
+      <article class="question-card">
+        <h2>19. Upload Evidence</h2>
+        <p>Attach a file (PDF or image) that shows your latest progress.</p>
+        <div class="upload-field">
+          <label class="file-label" for="evidenceFile">
+            <input type="file" id="evidenceFile" accept="application/pdf,image/*">
+            <span id="evidenceLabel">Choose a file…</span>
+          </label>
+          <small>Supported formats: PDF or image, up to 10 MB.</small>
+        </div>
+      </article>
+
+      <article class="question-card">
+        <h2>20. Quick Confidence Rating</h2>
+        <p>Tap the number that best reflects your confidence going into next week.</p>
+        <div class="scale-buttons" id="confidenceButtons">
+          <button type="button" class="scale-button" data-value="1">1</button>
+          <button type="button" class="scale-button" data-value="2">2</button>
+          <button type="button" class="scale-button" data-value="3">3</button>
+          <button type="button" class="scale-button" data-value="4">4</button>
+          <button type="button" class="scale-button" data-value="5">5</button>
+          <button type="button" class="scale-button active" data-value="6">6</button>
+          <button type="button" class="scale-button" data-value="7">7</button>
+          <button type="button" class="scale-button" data-value="8">8</button>
+          <button type="button" class="scale-button" data-value="9">9</button>
+          <button type="button" class="scale-button" data-value="10">10</button>
+        </div>
+        <p class="scale-summary" id="confidenceSummary">Current rating: 6</p>
+      </article>
+    </section>
+
+    <footer>
+      Prototype examples only. Pair each pattern with real survey data capture when building production flows.
+    </footer>
+  </main>
+
+  <script>
+    const energySlider = document.getElementById('energySlider');
+    const energyValue = document.getElementById('energyValue');
+    const energyBubble = document.getElementById('energyBubble');
+    const energyWrapper = energySlider?.parentElement;
+    const emojiScale = document.getElementById('emojiScale');
+    const pulseMeter = document.getElementById('pulseMeter');
+    const pulseValue = document.getElementById('pulseValue');
+    const confidenceRange = document.getElementById('confidenceRange');
+    const confidencePointer = document.getElementById('confidencePointer');
+    const confidenceValue = document.getElementById('confidenceValue');
+    const hoursValue = document.getElementById('hoursValue');
+    const stepperFill = document.getElementById('stepperFill');
+    const stepUp = document.getElementById('stepUp');
+    const stepDown = document.getElementById('stepDown');
+    const questPath = document.getElementById('questPath');
+    const questProgress = document.getElementById('questProgress');
+    const arcadeRow = document.getElementById('arcadeRow');
+    const arcadeStatus = document.getElementById('arcadeStatus');
+    const focusToggle = document.getElementById('focusToggle');
+    const focusSummary = document.getElementById('focusSummary');
+    const supportSelect = document.getElementById('supportSelect');
+    const supportFollowUp = document.getElementById('supportFollowUp');
+    const supportDetails = document.getElementById('supportDetails');
+    const reflectionNotes = document.getElementById('reflectionNotes');
+    const reflectionCounter = document.getElementById('reflectionCounter');
+    const timeRange = document.getElementById('timeRange');
+    const energyRange = document.getElementById('energyRange');
+    const timeValueLabel = document.getElementById('timeValueLabel');
+    const energyValueLabel = document.getElementById('energyValueLabel');
+    const evidenceFile = document.getElementById('evidenceFile');
+    const evidenceLabel = document.getElementById('evidenceLabel');
+    const confidenceButtons = document.getElementById('confidenceButtons');
+    const confidenceSummary = document.getElementById('confidenceSummary');
+
+    let energyCurrent = Number(energySlider?.value || '6') || 6;
+
+    const updateEnergySlider = (value) => {
+      if (!energySlider || !energyValue || !energyBubble) return;
+      const min = Number(energySlider.min || '1');
+      const max = Number(energySlider.max || '10');
+      const clamped = Math.max(min, Math.min(max, value));
+      const percent = (clamped - min) / (max - min || 1);
+      const sliderRect = energySlider.getBoundingClientRect();
+      const wrapperRect = energyWrapper?.getBoundingClientRect();
+      const thumbWidth = 26;
+      const relativeLeft = wrapperRect ? sliderRect.left - wrapperRect.left : 0;
+      const trackWidth = sliderRect.width - thumbWidth;
+      const offsetPx = relativeLeft + percent * Math.max(trackWidth, 0) + thumbWidth / 2;
+      energySlider.setAttribute('aria-valuenow', String(clamped));
+      energyValue.textContent = `Boost level: ${clamped} / 10`;
+      energyBubble.textContent = clamped;
+      energyBubble.style.left = `${offsetPx}px`;
+    };
+
+    energySlider?.addEventListener('input', (event) => {
+      const value = Number(event.target.value);
+      energyCurrent = value;
+      updateEnergySlider(value);
+    });
+
+    window.addEventListener('resize', () => {
+      updateEnergySlider(energyCurrent);
+    });
+
+    updateEnergySlider(energyCurrent);
+
+    emojiScale?.addEventListener('click', (event) => {
+      if (!(event.target instanceof HTMLElement)) return;
+      const button = event.target.closest('button');
+      if (!button) return;
+      emojiScale.querySelectorAll('button').forEach((btn) => {
+        btn.classList.remove('selected');
+        btn.setAttribute('aria-pressed', 'false');
+      });
+      button.classList.add('selected');
+      button.setAttribute('aria-pressed', 'true');
+    });
+
+    let currentPulse = Number(pulseMeter?.querySelector('.pulse-bar[aria-checked="true"]')?.dataset.value || '7') || 7;
+
+    const updatePulse = (value) => {
+      if (!pulseMeter || !pulseValue) return;
+      const clamped = Math.max(1, Math.min(10, value));
+      currentPulse = clamped;
+      pulseValue.textContent = `Pulse: ${clamped} / 10`;
+      pulseMeter.querySelectorAll('.pulse-bar').forEach((bar) => {
+        const barValue = Number(bar.dataset.value || '0');
+        const isActive = barValue <= clamped;
+        const isSelected = barValue === clamped;
+        bar.classList.toggle('active', isActive);
+        bar.setAttribute('aria-checked', String(isSelected));
+        bar.setAttribute('tabindex', isSelected ? '0' : '-1');
+      });
+    };
+
+    pulseMeter?.addEventListener('click', (event) => {
+      if (!(event.target instanceof HTMLElement)) return;
+      const bar = event.target.closest('.pulse-bar');
+      if (!bar) return;
+      const value = Number(bar.dataset.value || currentPulse);
+      updatePulse(value);
+      bar.focus();
+    });
+
+    pulseMeter?.addEventListener('keydown', (event) => {
+      if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      let next = currentPulse;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowUp') next = Math.min(10, currentPulse + 1);
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') next = Math.max(1, currentPulse - 1);
+      if (event.key === 'Home') next = 1;
+      if (event.key === 'End') next = 10;
+      updatePulse(next);
+      pulseMeter.querySelector(`.pulse-bar[data-value="${next}"]`)?.focus();
+    });
+
+    updatePulse(currentPulse);
+
+    let confidenceCurrent = Number(confidenceRange?.value || '6') || 6;
+
+    const updateConfidence = (value) => {
+      if (!confidenceRange || !confidencePointer || !confidenceValue) return;
+      const min = Number(confidenceRange.min || '1');
+      const max = Number(confidenceRange.max || '10');
+      const clamped = Math.max(min, Math.min(max, value));
+      const percent = (clamped - min) / (max - min || 1);
+      const minAngle = -120;
+      const maxAngle = 120;
+      const angle = minAngle + (maxAngle - minAngle) * percent;
+      confidenceRange.setAttribute('aria-valuenow', String(clamped));
+      confidencePointer.style.transform = `translateX(-50%) rotate(${angle}deg)`;
+      confidenceValue.textContent = clamped;
+      confidenceCurrent = clamped;
+    };
+
+    confidenceRange?.addEventListener('input', (event) => {
+      const value = Number(event.target.value);
+      updateConfidence(value);
+    });
+
+    updateConfidence(confidenceCurrent);
+
+    const clampHours = (value) => Math.max(0, Math.min(12, value));
+    let hoursCurrent = Number(hoursValue?.textContent || '0') || 0;
+
+    const updateHours = (value) => {
+      const clamped = clampHours(value);
+      hoursCurrent = clamped;
+      if (hoursValue) hoursValue.textContent = String(clamped);
+      if (stepperFill) {
+        const percent = Math.min(clamped, 12) / 12;
+        stepperFill.style.width = `${percent * 100}%`;
+      }
+    };
+
+    stepUp?.addEventListener('click', () => {
+      updateHours(hoursCurrent + 1);
+    });
+
+    stepDown?.addEventListener('click', () => {
+      updateHours(hoursCurrent - 1);
+    });
+
+    updateHours(hoursCurrent);
+
+    let questCurrent = Number(questPath?.querySelector('[aria-checked="true"]')?.dataset.step || '5') || 5;
+
+    const updateQuest = (value) => {
+      if (!questPath || !questProgress) return;
+      const clamped = Math.max(1, Math.min(10, value));
+      questCurrent = clamped;
+      questPath.querySelectorAll('.quest-node').forEach((node) => {
+        const step = Number(node.dataset.step || '0');
+        const isCurrent = step === clamped;
+        const isActive = step <= clamped;
+        node.classList.toggle('active', isActive);
+        node.setAttribute('aria-checked', String(isCurrent));
+        node.setAttribute('tabindex', isCurrent ? '0' : '-1');
+      });
+      questProgress.textContent = `Checkpoint: ${clamped} / 10`;
+      const fillPercent = ((clamped - 1) / 9) * 100;
+      questPath.style.setProperty('--quest-fill', `${fillPercent}%`);
+    };
+
+    questPath?.addEventListener('click', (event) => {
+      if (!(event.target instanceof HTMLElement)) return;
+      const node = event.target.closest('.quest-node');
+      if (!node) return;
+      const step = Number(node.dataset.step || questCurrent);
+      updateQuest(step);
+      node.focus();
+    });
+
+    questPath?.addEventListener('keydown', (event) => {
+      if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      let next = questCurrent;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowUp') next = Math.min(10, questCurrent + 1);
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') next = Math.max(1, questCurrent - 1);
+      if (event.key === 'Home') next = 1;
+      if (event.key === 'End') next = 10;
+      updateQuest(next);
+      questPath.querySelector(`.quest-node[data-step="${next}"]`)?.focus();
+    });
+
+    updateQuest(questCurrent);
+
+    let arcadeCurrent = Number(arcadeRow?.querySelector('.arcade-light[aria-checked="true"]')?.dataset.value || '6') || 6;
+
+    const updateArcade = (value) => {
+      if (!arcadeRow || !arcadeStatus) return;
+      const clamped = Math.max(1, Math.min(10, value));
+      arcadeCurrent = clamped;
+      arcadeRow.querySelectorAll('.arcade-light').forEach((light) => {
+        const lightValue = Number(light.dataset.value || '0');
+        const isActive = lightValue <= clamped;
+        const isSelected = lightValue === clamped;
+        light.classList.toggle('active', isActive);
+        light.setAttribute('aria-checked', String(isSelected));
+        light.setAttribute('tabindex', isSelected ? '0' : '-1');
+      });
+      arcadeStatus.textContent = `Lights on: ${clamped} / 10`;
+    };
+
+    arcadeRow?.addEventListener('click', (event) => {
+      if (!(event.target instanceof HTMLElement)) return;
+      const light = event.target.closest('.arcade-light');
+      if (!light) return;
+      const value = Number(light.dataset.value || arcadeCurrent);
+      updateArcade(value);
+      light.focus();
+    });
+
+    arcadeRow?.addEventListener('keydown', (event) => {
+      if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      let next = arcadeCurrent;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowUp') next = Math.min(10, arcadeCurrent + 1);
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') next = Math.max(1, arcadeCurrent - 1);
+      if (event.key === 'Home') next = 1;
+      if (event.key === 'End') next = 10;
+      updateArcade(next);
+      arcadeRow.querySelector(`.arcade-light[data-value="${next}"]`)?.focus();
+    });
+
+    updateArcade(arcadeCurrent);
+
+    const updateFocusSummary = () => {
+      if (!focusToggle || !focusSummary) return;
+      const selected = Array.from(focusToggle.querySelectorAll('.toggle-pill.active')).map((btn) => btn.dataset.value || '').filter(Boolean);
+      focusSummary.textContent = selected.length ? `Selected: ${selected.join(', ')}` : 'No areas selected yet.';
+    };
+
+    focusToggle?.addEventListener('click', (event) => {
+      if (!(event.target instanceof HTMLElement)) return;
+      const pill = event.target.closest('.toggle-pill');
+      if (!pill) return;
+      pill.classList.toggle('active');
+      updateFocusSummary();
+    });
+
+    updateFocusSummary();
+
+    supportSelect?.addEventListener('change', () => {
+      if (!supportFollowUp) return;
+      const showFollowUp = supportSelect.value === 'other';
+      supportFollowUp.hidden = !showFollowUp;
+      if (!showFollowUp && supportDetails) {
+        supportDetails.value = '';
+      }
+      if (showFollowUp) {
+        supportDetails?.focus();
+      }
+    });
+
+    const updateReflectionCounter = () => {
+      if (!reflectionNotes || !reflectionCounter) return;
+      const max = Number(reflectionNotes.getAttribute('maxlength') || '0');
+      const valueLength = reflectionNotes.value.length;
+      reflectionCounter.textContent = max ? `${valueLength} / ${max}` : `${valueLength} characters`;
+    };
+
+    reflectionNotes?.addEventListener('input', updateReflectionCounter);
+    updateReflectionCounter();
+
+    const updateDualSlider = () => {
+      if (timeRange && timeValueLabel) {
+        const hours = Number(timeRange.value || '0');
+        timeValueLabel.textContent = `${hours}${hours >= 12 ? '+' : ''} hrs/week`;
+      }
+      if (energyRange && energyValueLabel) {
+        const energy = Number(energyRange.value || '0');
+        energyValueLabel.textContent = `${energy} / 10`;
+      }
+    };
+
+    timeRange?.addEventListener('input', updateDualSlider);
+    energyRange?.addEventListener('input', updateDualSlider);
+    updateDualSlider();
+
+    evidenceFile?.addEventListener('change', (event) => {
+      if (!evidenceLabel) return;
+      const input = event.target;
+      const files = input.files;
+      evidenceLabel.textContent = files && files[0] ? files[0].name : 'Choose a file…';
+    });
+
+    const updateConfidenceButtons = (value) => {
+      if (!confidenceButtons || !confidenceSummary) return;
+      confidenceButtons.querySelectorAll('.scale-button').forEach((btn) => {
+        const isActive = btn.dataset.value === String(value);
+        btn.classList.toggle('active', isActive);
+      });
+      confidenceSummary.textContent = `Current rating: ${value}`;
+    };
+
+    confidenceButtons?.addEventListener('click', (event) => {
+      if (!(event.target instanceof HTMLElement)) return;
+      const button = event.target.closest('.scale-button');
+      if (!button) return;
+      updateConfidenceButtons(button.dataset.value || '0');
+    });
+
+    const initialConfidence = confidenceButtons?.querySelector('.scale-button.active')?.dataset.value || '0';
+    updateConfidenceButtons(initialConfidence);
+  </script>
+</body>
+</html>

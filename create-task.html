@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Task – MySTEMGrowth</title>
+  <style>
+    :root {
+      --nav-bg: #101932;
+      --nav-text: #ffffff;
+      --accent: #1D2B53;
+      --border: #d8deec;
+      --bg: #f5f7fb;
+      --muted: #475569;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #111827;
+    }
+
+    .main-nav {
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 28px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--nav-text);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 4px;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .nav-spacer {
+      flex: 1;
+    }
+
+    .nav-action {
+      color: var(--nav-bg);
+      background: #d9d9d9;
+      text-decoration: none;
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    main {
+      padding: 32px clamp(16px, 5vw, 72px);
+      display: grid;
+      gap: 20px;
+      max-width: 960px;
+      margin: 0 auto 60px;
+    }
+
+    section {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: clamp(20px, 4vw, 32px);
+      display: grid;
+      gap: 16px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 34px);
+      color: var(--accent);
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    input,
+    select,
+    textarea {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 14px;
+      width: 100%;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .form-row {
+      display: grid;
+      gap: 8px;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .primary-btn {
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 22px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .secondary-btn {
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--accent);
+      border-radius: 8px;
+      padding: 10px 22px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-logo">
+      <img src="images/tree_sprout_new.png" alt="MySTEMGrowth sprout logo" height="60">
+    </div>
+    <div class="nav-links">
+      <a href="role-select.html">Roles</a>
+      <a href="program-coordinator.html">Coordinator Home</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <a class="nav-action" href="#">Sign Out</a>
+  </nav>
+
+  <main>
+    <section>
+      <h1>Create Task</h1>
+      <p>Use this lightweight form to draft survey reminders or custom follow-ups. In production this would call the task service API.</p>
+      <div class="form-grid">
+        <div class="form-row">
+          <label for="task-title">Task title</label>
+          <input id="task-title" type="text" placeholder="e.g., Send post-survey reminder #2">
+        </div>
+        <div class="form-row">
+          <label for="task-type">Task type</label>
+          <select id="task-type">
+            <option>SURVEY_REMINDER_PRE</option>
+            <option>SURVEY_REMINDER_POST</option>
+            <option>CUSTOM</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="task-due">Due date</label>
+          <input id="task-due" type="date">
+        </div>
+        <div class="form-row">
+          <label for="task-notes">Notes</label>
+          <textarea id="task-notes" placeholder="Optional instructions or links."></textarea>
+        </div>
+      </div>
+      <div class="button-row">
+        <button type="button" class="primary-btn">Save task</button>
+        <a class="secondary-btn" href="program-coordinator.html">Cancel</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

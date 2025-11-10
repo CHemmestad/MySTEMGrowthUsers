@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Resources – MySTEMGrowth</title>
+  <style>
+    :root {
+      --nav-bg: #101932;
+      --nav-text: #ffffff;
+      --accent: #1D2B53;
+      --border: #d8deec;
+      --bg: #f5f7fb;
+      --muted: #475569;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #111827;
+    }
+
+    .main-nav {
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 28px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--nav-text);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .nav-spacer {
+      flex: 1;
+    }
+
+    .nav-action {
+      color: var(--nav-bg);
+      background: #d9d9d9;
+      text-decoration: none;
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    main {
+      padding: 32px clamp(18px, 6vw, 80px);
+      display: grid;
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto 60px;
+    }
+
+    section {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: clamp(20px, 4vw, 34px);
+      display: grid;
+      gap: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 36px);
+      color: var(--accent);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 22px;
+      color: var(--accent);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: rgba(17, 24, 39, 0.7);
+    }
+
+    .resource-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: nowrap;
+    }
+
+    .pill-link {
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .pill-link.primary {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .tips-list {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-logo">
+      <img src="images/tree_sprout_new.png" alt="MySTEMGrowth sprout logo" height="60">
+    </div>
+    <div class="nav-links">
+      <a href="role-select.html">Roles</a>
+      <a href="program-coordinator.html">Coordinator Home</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <a class="nav-action" href="#">Sign Out</a>
+  </nav>
+
+  <main>
+    <section>
+      <h1>Manage Current Resources</h1>
+      <p>Review the content that is already surfaced in student portals. Use the quick actions to archive, duplicate, or edit resources before the next survey window.</p>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 38%;">Resource</th>
+            <th style="width: 20%;">Topic</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Survey Prep Checklist</td>
+            <td>Survey Prep</td>
+            <td class="resource-actions">
+              <a class="pill-link" href="resource-new.html">Edit</a>
+              <a class="pill-link" href="#">Remove</a>
+              <a class="pill-link" href="resource-library.html">View</a>
+            </td>
+          </tr>
+          <tr>
+            <td>Family Outreach Script</td>
+            <td>Family Outreach</td>
+            <td class="resource-actions">
+              <a class="pill-link" href="resource-new.html">Edit</a>
+              <a class="pill-link" href="#">Remove</a>
+              <a class="pill-link" href="resource-library.html">View</a>
+            </td>
+          </tr>
+          <tr>
+            <td>Post-survey Follow-up Email</td>
+            <td>Post-survey Follow-up</td>
+            <td class="resource-actions">
+              <a class="pill-link" href="resource-new.html">Edit</a>
+              <a class="pill-link" href="#">Remove</a>
+              <a class="pill-link" href="resource-library.html">View</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="resource-actions">
+        <a class="pill-link" href="resource-library.html">Add resource</a>
+        <a class="pill-link primary" href="resource-new.html">Create resource</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Tips</h2>
+      <ul class="tips-list">
+        <li>Keep Survey Prep, Post-survey Follow-up, and Family Outreach topics populated so coordinators can filter quickly.</li>
+        <li>Duplicate resources seasonally rather than overwriting so you have a record of what was shared each term.</li>
+        <li>Link to survey-specific folders in the LMS so students have context when they receive reminder tasks.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

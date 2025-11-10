@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survey Prototype Gallery – MySTEMGrowth</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --nav-bg: #101932;
+      --nav-text: #ffffff;
+      --accent: #1D2B53;
+      --accent-light: #6270ff;
+      --muted: #475569;
+      --border: #d8deec;
+      --glow: rgba(98, 112, 255, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #101828;
+    }
+
+    .main-nav {
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 28px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .main-nav a {
+      color: var(--nav-text);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav-spacer {
+      flex: 1;
+    }
+
+    .nav-action {
+      background: #d9d9d9;
+      color: var(--nav-bg);
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    main {
+      padding: clamp(32px, 6vw, 80px) clamp(20px, 7vw, 100px);
+      display: grid;
+      gap: clamp(32px, 6vw, 60px);
+    }
+
+    header {
+      display: grid;
+      gap: 16px;
+      max-width: 820px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(32px, 6vw, 48px);
+      color: var(--accent);
+    }
+
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .prototype-grid {
+      display: grid;
+      gap: clamp(22px, 4vw, 34px);
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .prototype-card {
+      background: var(--surface);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 32px rgba(16, 25, 50, 0.08);
+      padding: clamp(22px, 4vw, 28px);
+      display: grid;
+      gap: 18px;
+    }
+
+    .prototype-card h2 {
+      margin: 0;
+      font-size: 20px;
+      color: #0f172a;
+    }
+
+    .prototype-card p {
+      margin: 0;
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* Prototype 1: Gradient Likert slider */
+    .gradient-slider {
+      display: grid;
+      gap: 12px;
+    }
+
+    .gradient-slider input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 18px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ff6b6b, #ffd166, #06d6a0, #118ab2);
+      box-shadow: 0 6px 18px rgba(17, 138, 178, 0.25);
+      outline: none;
+    }
+
+    .gradient-slider input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid var(--accent);
+      box-shadow: 0 8px 18px rgba(29, 43, 83, 0.25);
+    }
+
+    .gradient-slider input[type="range"]::-moz-range-thumb {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid var(--accent);
+      box-shadow: 0 8px 18px rgba(29, 43, 83, 0.25);
+    }
+
+    .scale-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .scale-labels.vertical {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .scale-numbers {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: rgba(71, 85, 105, 0.68);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.06em;
+    }
+
+    /* Prototype 2: Segmented button group */
+    .segmented-group {
+      display: grid;
+      gap: 14px;
+    }
+
+    .segmented-options {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border-radius: 999px;
+      background: rgba(29, 43, 83, 0.08);
+      padding: 4px;
+      gap: 4px;
+    }
+
+    .segmented-options input {
+      display: none;
+    }
+
+    .segmented-options label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 4px;
+      padding: 10px 0;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--muted);
+      text-align: center;
+      cursor: pointer;
+      line-height: 1.2;
+      transition: all 0.2s ease;
+    }
+
+    .segmented-options label strong {
+      font-size: 16px;
+      color: #0f172a;
+      line-height: 1;
+    }
+
+    .segmented-options label span {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(71, 85, 105, 0.75);
+    }
+
+    .segmented-options input:checked + label {
+      background: linear-gradient(135deg, #1D2B53, var(--accent-light));
+      color: #ffffff;
+      box-shadow: 0 10px 20px rgba(29, 43, 83, 0.25);
+    }
+
+    .segmented-options input:checked + label strong,
+    .segmented-options input:checked + label span {
+      color: #ffffff;
+    }
+
+    /* Prototype 3: Interactive dial */
+    .dial-wrapper {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .dial {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(29, 43, 83, 0.35));
+      position: relative;
+      box-shadow: inset 0 0 0 6px rgba(29, 43, 83, 0.12), 0 18px 28px rgba(29, 43, 83, 0.25);
+    }
+
+    .dial::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: inset 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .dial-pointer {
+      position: absolute;
+      width: 4px;
+      height: 50%;
+      background: var(--accent-light);
+      top: 10%;
+      left: 50%;
+      transform-origin: bottom center;
+      transform: translateX(-50%) rotate(-135deg);
+      border-radius: 999px;
+      box-shadow: 0 0 12px rgba(98, 112, 255, 0.45);
+    }
+
+    .dial-value {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+    }
+
+    .dial-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(29, 43, 83, 0.08);
+      outline: none;
+    }
+
+    .dial-slider::-webkit-slider-thumb,
+    .dial-slider::-moz-range-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 26px;
+      height: 26px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      border-radius: 50%;
+      border: none;
+      box-shadow: 0 10px 18px rgba(98, 112, 255, 0.35);
+      cursor: pointer;
+    }
+
+    /* Prototype 4: Emoji reaction strip */
+    .emoji-strip {
+      display: grid;
+      gap: 18px;
+    }
+
+    .emoji-options {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .emoji-options input {
+      display: none;
+    }
+
+    .emoji-options label {
+      display: grid;
+      place-items: center;
+      gap: 8px;
+      padding: 10px;
+      width: 100%;
+      border-radius: 16px;
+      background: rgba(29, 43, 83, 0.06);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .emoji-icon {
+      font-size: 32px;
+    }
+
+    .emoji-options input:checked + label {
+      background: rgba(98, 112, 255, 0.12);
+      color: var(--accent);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 26px rgba(98, 112, 255, 0.18);
+    }
+
+    /* Prototype 5: Toggle tiles */
+    .toggle-tiles {
+      display: grid;
+      gap: 14px;
+    }
+
+    .tile-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    .tile-grid.ten {
+      grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+    }
+
+    .toggle-tiles input {
+      display: none;
+    }
+
+    .toggle-tiles label {
+      display: grid;
+      place-items: center;
+      gap: 10px;
+      padding: 18px 16px;
+      border-radius: 16px;
+      border: 1px dashed rgba(29, 43, 83, 0.35);
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.75);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .toggle-tiles input:checked + label {
+      background: linear-gradient(135deg, rgba(98, 112, 255, 0.22), rgba(60, 179, 113, 0.2));
+      border-color: transparent;
+      color: #0f172a;
+      box-shadow: 0 16px 28px rgba(16, 25, 50, 0.18);
+    }
+
+    .tile-number {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1;
+      color: #0f172a;
+    }
+
+    .tile-text {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(71, 85, 105, 0.78);
+    }
+
+    .toggle-tiles input:checked + label .tile-text {
+      color: #0f172a;
+    }
+
+    /* Prototype 6: Step dot ladder */
+    .step-dots {
+      display: grid;
+      gap: 16px;
+    }
+
+    .step-dot-track {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+      padding: 0 14px;
+    }
+
+    .step-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(29, 43, 83, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(29, 43, 83, 0.45);
+      background: rgba(255, 255, 255, 0.9);
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .step-dot.active {
+      background: linear-gradient(135deg, rgba(98, 112, 255, 0.32), rgba(60, 179, 113, 0.28));
+      color: #0f172a;
+      border-color: transparent;
+      box-shadow: 0 12px 22px rgba(16, 25, 50, 0.2);
+      transform: translateY(-3px);
+    }
+
+    .step-dot-track::before {
+      content: "";
+      position: absolute;
+      left: 26px;
+      right: 26px;
+      height: 2px;
+      background: rgba(29, 43, 83, 0.12);
+      z-index: -1;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Prototype 7: Thermometer slider */
+    .thermo-scale {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .thermo {
+      position: relative;
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+      min-height: 180px;
+    }
+
+    .thermo-bar {
+      position: relative;
+      width: 26px;
+      height: 160px;
+      border-radius: 999px;
+      background: rgba(29, 43, 83, 0.12);
+      overflow: hidden;
+      box-shadow: inset 0 0 0 2px rgba(29, 43, 83, 0.1);
+    }
+
+    .thermo-fill {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, rgba(98, 112, 255, 0.85), rgba(60, 179, 113, 0.75));
+      transition: height 0.25s ease;
+    }
+
+    .thermo-bulb {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, rgba(98, 112, 255, 0.95), rgba(60, 179, 113, 0.85));
+      box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.45), 0 12px 24px rgba(16, 25, 50, 0.25);
+    }
+
+    .thermo-controls {
+      display: grid;
+      gap: 14px;
+    }
+
+    .vertical-range {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 200px;
+      height: 14px;
+      border-radius: 999px;
+      background: rgba(29, 43, 83, 0.08);
+      outline: none;
+      transform: rotate(-90deg);
+      transform-origin: left center;
+      margin-left: 24px;
+    }
+
+    .vertical-range::-webkit-slider-thumb,
+    .vertical-range::-moz-range-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      border: none;
+      box-shadow: 0 10px 18px rgba(29, 43, 83, 0.28);
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 640px) {
+      .dial-wrapper {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <a href="index.html" aria-label="Return to layout library">← Layout Library</a>
+    <div class="nav-spacer"></div>
+    <a class="nav-action" href="student-home.html">Back to student dashboard</a>
+  </nav>
+
+  <main>
+    <header>
+      <h1>Survey Interaction Gallery</h1>
+      <p>Prototype interactions for the student experience. Each card showcases a different input pattern that can plug into the survey toolkit. Mix and match to craft the flow that feels right for your program.</p>
+    </header>
+
+    <section class="prototype-grid">
+      <article class="prototype-card">
+        <h2>Gradient Confidence Slider</h2>
+        <p>10-point slider with color cues to show intensity from not confident to extremely confident.</p>
+        <div class="gradient-slider">
+          <label for="likert-slider">How confident are you in explaining your project to a program lead? (1 = Not confident, 10 = Extremely confident)</label>
+          <input id="likert-slider" type="range" min="1" max="10" step="1" value="6">
+          <div class="scale-labels">
+            <span>Not confident</span>
+            <span>Moderately confident</span>
+            <span>Extremely confident</span>
+          </div>
+          <div class="scale-numbers" aria-hidden="true">
+            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="prototype-card">
+        <h2>Likelihood Segments</h2>
+        <p>Five labeled segments summarize certainty from unlikely to extremely likely while still mapping to numeric scores.</p>
+        <div class="segmented-group">
+          <p class="prompt">How likely are you to seek help from a support coach this week?</p>
+          <div class="segmented-options" role="radiogroup" aria-label="Likelihood scale from 1 to 5">
+            <input type="radio" id="likely-1" name="likelihood" checked>
+            <label for="likely-1"><strong>1</strong><span>Not at all likely</span></label>
+
+            <input type="radio" id="likely-2" name="likelihood">
+            <label for="likely-2"><strong>2</strong><span>Slightly likely</span></label>
+
+            <input type="radio" id="likely-3" name="likelihood">
+            <label for="likely-3"><strong>3</strong><span>Somewhat likely</span></label>
+
+            <input type="radio" id="likely-4" name="likelihood">
+            <label for="likely-4"><strong>4</strong><span>Very likely</span></label>
+
+            <input type="radio" id="likely-5" name="likelihood">
+            <label for="likely-5"><strong>5</strong><span>Extremely likely</span></label>
+          </div>
+        </div>
+      </article>
+
+      <article class="prototype-card">
+        <h2>Confidence Dial</h2>
+        <p>Analog-inspired dial that animates as students rate themselves from 1 (not confident) to 10 (fully confident).</p>
+        <div class="dial-wrapper">
+          <div class="dial" aria-hidden="true">
+            <div class="dial-pointer" id="dialPointer"></div>
+            <div class="dial-value" id="dialValue">7</div>
+          </div>
+          <div class="dial-controls">
+            <label for="dial-slider">How confident are you in troubleshooting new lab equipment? (1 = Not confident, 10 = Fully confident)</label>
+            <input id="dial-slider" class="dial-slider" type="range" min="1" max="10" step="1" value="7" aria-valuemin="1" aria-valuemax="10" aria-valuenow="7">
+          </div>
+        </div>
+      </article>
+
+      <article class="prototype-card">
+        <h2>Emoji Confidence Strip</h2>
+        <p>Expressive icons map to a 5-point confidence scale. Students choose the face that feels right.</p>
+        <div class="emoji-strip">
+          <p class="prompt">Right now I feel…</p>
+          <div class="emoji-options" role="radiogroup" aria-label="Confidence emoji scale">
+            <input type="radio" id="emoji-1" name="confidence-emoji">
+            <label for="emoji-1"><span class="emoji-icon">😟</span>1 · Very uneasy</label>
+
+            <input type="radio" id="emoji-2" name="confidence-emoji">
+            <label for="emoji-2"><span class="emoji-icon">😐</span>2 · Cautious</label>
+
+            <input type="radio" id="emoji-3" name="confidence-emoji" checked>
+            <label for="emoji-3"><span class="emoji-icon">🙂</span>3 · Steady</label>
+
+            <input type="radio" id="emoji-4" name="confidence-emoji">
+            <label for="emoji-4"><span class="emoji-icon">😄</span>4 · Ready</label>
+
+            <input type="radio" id="emoji-5" name="confidence-emoji">
+            <label for="emoji-5"><span class="emoji-icon">🚀</span>5 · Extremely confident</label>
+          </div>
+        </div>
+      </article>
+
+      <article class="prototype-card">
+        <h2>Numbered Confidence Tiles</h2>
+        <p>Ten tiles behave like radio buttons—tap the energy level that best captures your confidence score.</p>
+        <div class="toggle-tiles">
+          <p class="prompt">Select your confidence heading into the next sprint.</p>
+          <div class="tile-grid ten" role="radiogroup" aria-label="Confidence scale from 1 to 10">
+            <input type="radio" id="tile-1" name="confidence-tiles">
+            <label for="tile-1"><span class="tile-number">1</span><span class="tile-text">Not confident</span></label>
+
+            <input type="radio" id="tile-2" name="confidence-tiles">
+            <label for="tile-2"><span class="tile-number">2</span><span class="tile-text">Low</span></label>
+
+            <input type="radio" id="tile-3" name="confidence-tiles">
+            <label for="tile-3"><span class="tile-number">3</span><span class="tile-text">Building</span></label>
+
+            <input type="radio" id="tile-4" name="confidence-tiles">
+            <label for="tile-4"><span class="tile-number">4</span><span class="tile-text">Warming up</span></label>
+
+            <input type="radio" id="tile-5" name="confidence-tiles" checked>
+            <label for="tile-5"><span class="tile-number">5</span><span class="tile-text">Moderate</span></label>
+
+            <input type="radio" id="tile-6" name="confidence-tiles">
+            <label for="tile-6"><span class="tile-number">6</span><span class="tile-text">Optimistic</span></label>
+
+            <input type="radio" id="tile-7" name="confidence-tiles">
+            <label for="tile-7"><span class="tile-number">7</span><span class="tile-text">Ready</span></label>
+
+            <input type="radio" id="tile-8" name="confidence-tiles">
+            <label for="tile-8"><span class="tile-number">8</span><span class="tile-text">Strong</span></label>
+
+            <input type="radio" id="tile-9" name="confidence-tiles">
+            <label for="tile-9"><span class="tile-number">9</span><span class="tile-text">Very strong</span></label>
+
+            <input type="radio" id="tile-10" name="confidence-tiles">
+            <label for="tile-10"><span class="tile-number">10</span><span class="tile-text">Unstoppable</span></label>
+          </div>
+        </div>
+      </article>
+
+      <article class="prototype-card">
+        <h2>Step Dot Ladder</h2>
+        <p>A ten-dot ladder fills in as students slide toward higher belonging. Works well on touch plus keyboard.</p>
+        <div class="step-dots">
+          <p class="prompt">Rate your sense of belonging in this program.</p>
+          <div class="scale-labels">
+            <span>1 · Not at all</span>
+            <span>10 · Completely</span>
+          </div>
+          <div class="step-dot-track" role="list" aria-label="Belonging scale from 1 to 10">
+            <span class="step-dot active" role="listitem">1</span>
+            <span class="step-dot active" role="listitem">2</span>
+            <span class="step-dot active" role="listitem">3</span>
+            <span class="step-dot active" role="listitem">4</span>
+            <span class="step-dot active" role="listitem">5</span>
+            <span class="step-dot active" role="listitem">6</span>
+            <span class="step-dot" role="listitem">7</span>
+            <span class="step-dot" role="listitem">8</span>
+            <span class="step-dot" role="listitem">9</span>
+            <span class="step-dot" role="listitem">10</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="prototype-card">
+        <h2>Thermometer Likelihood</h2>
+        <p>Vertical slider mimics a thermometer while still capturing a 1–10 likelihood score.</p>
+        <div class="thermo-scale">
+          <div class="thermo" aria-hidden="true">
+            <div class="thermo-bar">
+              <div class="thermo-fill" id="thermoFill"></div>
+            </div>
+            <div class="thermo-bulb"></div>
+          </div>
+          <div class="thermo-controls">
+            <label for="thermo-range">How likely are you to recommend this program to a friend? (1 = Extremely unlikely, 10 = Extremely likely)</label>
+            <input id="thermo-range" class="vertical-range" type="range" min="1" max="10" step="1" value="6" aria-valuemin="1" aria-valuemax="10" aria-valuenow="6">
+            <div class="scale-labels vertical">
+              <span>10 · Extremely likely</span>
+              <span>7 · Likely</span>
+              <span>4 · Neutral</span>
+              <span>1 · Extremely unlikely</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      Prototype interactions only. Wire to live survey data and state management during implementation.
+    </footer>
+  </main>
+
+  <script>
+    const dialSlider = document.getElementById('dial-slider');
+    const dialPointer = document.getElementById('dialPointer');
+    const dialValue = document.getElementById('dialValue');
+    const thermoRange = document.getElementById('thermo-range');
+    const thermoFill = document.getElementById('thermoFill');
+
+    const updateDial = (value) => {
+      if (!dialSlider || !dialPointer || !dialValue) return;
+      const minAngle = -135;
+      const maxAngle = 135;
+      const dialMin = Number(dialSlider.min || '1');
+      const dialMax = Number(dialSlider.max || '10');
+      const percent = (value - dialMin) / (dialMax - dialMin);
+      const clamped = Math.max(0, Math.min(1, percent));
+      const angle = minAngle + (maxAngle - minAngle) * clamped;
+      dialPointer.style.transform = `translateX(-50%) rotate(${angle}deg)`;
+      dialValue.textContent = value;
+      dialSlider.setAttribute('aria-valuenow', String(value));
+    };
+
+    const updateThermo = (value) => {
+      if (!thermoRange || !thermoFill) return;
+      const thermoMin = Number(thermoRange.min || '1');
+      const thermoMax = Number(thermoRange.max || '10');
+      const percent = (value - thermoMin) / (thermoMax - thermoMin);
+      const clamped = Math.max(0, Math.min(1, percent));
+      thermoFill.style.height = `${clamped * 100}%`;
+      thermoRange.setAttribute('aria-valuenow', String(value));
+    };
+
+    dialSlider?.addEventListener('input', (event) => {
+      updateDial(Number(event.target.value));
+    });
+
+    thermoRange?.addEventListener('input', (event) => {
+      updateThermo(Number(event.target.value));
+    });
+
+    if (dialSlider) {
+      updateDial(Number(dialSlider.value));
+    }
+
+    if (thermoRange) {
+      updateThermo(Number(thermoRange.value));
+    }
+  </script>
+</body>
+</html>
